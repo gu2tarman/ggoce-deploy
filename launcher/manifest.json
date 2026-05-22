@@ -1,0 +1,8 @@
+{
+  "version": "0.1.0",
+  "released": "2026-05-23T01:50:00Z",
+  "notes": "초기 릴리스. 향후 새 버전 배포 시 이 파일에 새 url + sha256 + version 업데이트.",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.0/GGOLauncher.exe",
+  "size": 0,
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+}
