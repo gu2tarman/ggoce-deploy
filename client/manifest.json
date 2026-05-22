@@ -1,0 +1,18 @@
+{
+  "version": "1.4.2",
+  "released": "2026-05-22T00:00:00Z",
+  "notes": "현재 배포 중인 v1.4.2 — 우리 런처의 자동 업데이트 체크 검증용 manifest. 실제 변경 없음 (해시 일치하면 '최신 버전' 표시됨).",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.4.2/",
+  "files": [
+    {
+      "path": "cuo.dll",
+      "size": 15172096,
+      "sha256": "cd79a6d68d415eb4307452b0b61502cde0d70a16d93b0f57b06b46c303b54cae"
+    },
+    {
+      "path": "ClassicUO.exe",
+      "size": 201216,
+      "sha256": "8ea95b44e57c0228781e8cbe9ddedb2558df0543131c1a871ac0abc9ffb9c205"
+    }
+  ]
+}
