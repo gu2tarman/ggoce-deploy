@@ -22,6 +22,14 @@
       "date": "2026-05-22",
       "severity": "urgent",
       "body_md": "이 항목은 **긴급 공지 스타일** 테스트입니다.\n\n빨간 테두리 + `긴급` 뱃지가 표시되면 정상."
+    },
+    {
+      "id": "2026-05-22-long-test",
+      "title": "테스트 — 긴 본문 + 전체 보기 링크",
+      "date": "2026-05-22",
+      "severity": "normal",
+      "body_md": "**v1.5 패치 주요 변경사항** (요약)\n\n- 신규 던전 3개 추가 (Shadow Keep, Frozen Cavern, Twilight Forge)\n- 무기 밸런스 조정 (단검 +5%, 활 -3%)\n- 길드 시스템 개편 (직급 5단계, 길드 창고 100칸)\n- 인벤토리 정렬 기능 추가\n- 채팅 필터 옵션 확장\n- 미니맵 줌 단계 4단계로 확장\n- 거래 인터페이스 개선\n- 사망 페널티 일부 완화\n- 다양한 버그 수정\n\n자세한 전체 내용은 GitHub 패치노트에서 확인하세요.",
+      "url": "https://github.com/gu2tarman/ggoce-deploy"
     }
   ]
 }
