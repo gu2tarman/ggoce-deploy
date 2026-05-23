@@ -1,8 +1,8 @@
 {
-  "version": "0.1.2",
-  "released": "2026-05-23T09:35:00Z",
-  "notes": "사이드바 JSON 원격 연동, MULTI LOGIN 6계정 선택 + cap, 플러그인 별명 인라인 편집, ClassicUO 안크 아이콘, 자동 업데이트 6h polling, updater TmpGuard 정리, ProductVersion 폴백.",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.2/GGOLauncher.exe",
+  "version": "0.1.3",
+  "released": "2026-05-24T00:05:00Z",
+  "notes": "UI polish — 계정 라디오 제거(MULTI 체크박스만), 프로필 pill을 MULTI n/전체 표시, 우측하단 Launcher 버전 표시. + v0.1.2.1 hotfix(에러 toast retry, MULTI cap 정합, 플러그인 별명 Escape 취소).",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.3/GGOLauncher.exe",
   "size": 5030912,
-  "sha256": "dba369f79d58a001c6eea26fc34b6ff4b1a37cce97fc684c01b5b4e1d735766f"
+  "sha256": "298dea1633c2cfcd1f1d7ce4dcf6722d1dcab9d29b342dd43daaa3d6fe0cccae"
 }
