@@ -3,6 +3,6 @@
   "released": "2026-05-23T01:50:00Z",
   "notes": "초기 릴리스. 향후 새 버전 배포 시 이 파일에 새 url + sha256 + version 업데이트.",
   "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.0/GGOLauncher.exe",
-  "size": 4973568,
-  "sha256": "0d14ece02c6f3bc977937e4cc9aac8a89d187d8343a906725f092cc3a3efbb53"
+  "size": 4994560,
+  "sha256": "1d26591bcb8af279fc9459a0bd267c6ae553e7f62a4269041e2202f81ebd5c8c"
 }
