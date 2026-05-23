@@ -1,67 +1,108 @@
 # ggoce-deploy
 
-GGO Launcher 배포 아티팩트 호스팅 레포.
+GGO Launcher가 읽는 배포 아티팩트 저장소입니다.
 
 ## 구조
 
-```
+```text
 client/
-  manifest.json         ← 런처가 fetch하는 최신 매니페스트
-  v1.4.2/               ← 버전별 파일 (cuo.dll, ClassicUO.exe, …, version.txt)
-  v1.4.3/
-notice.json             ← 공지사항 (Margo / GGOUO 섹션)
+  manifest.json          런처가 fetch하는 최신 GGO CE 클라이언트 manifest
+  v1.4.2/                버전별 클라이언트 업데이트 파일
+launcher/
+  manifest.json          런처 자기 업데이트용 manifest
+notice.json              공지사항
 scripts/
-  build-manifest.ps1    ← 새 GGO CE 빌드 → 자동 manifest 생성 헬퍼
+  build-manifest.ps1     빌드 폴더에서 client manifest 생성
 ```
 
-## 새 GGO CE 릴리스 절차
+## 클라이언트 업데이트 원칙
 
-1. GGO CE 빌드 완료 (예: `C:\...\CUO-GGOCustomEdition-v1.4.3`)
-2. **이 레포 루트에서** 스크립트 실행:
-   ```powershell
-   .\scripts\build-manifest.ps1 `
-     -BuildPath "C:\Users\USER\Desktop\CUO-GGOCE-Test\CUO-GGOCustomEdition-v1.4.3" `
-     -Version "1.4.3" `
-     -Notes "버그 수정, 신규 던전"
-   ```
-3. 스크립트가 자동으로:
-   - `client/v1.4.3/` 폴더에 모든 .exe + .dll 복사
-   - `version.txt` 자동 생성 (내용: `1.4.3`)
-   - `client/manifest.json` 갱신 (SHA256 포함)
-4. git 푸시:
-   ```bash
-   git add .
-   git commit -m "Release v1.4.3"
-   git push
-   ```
-5. 끝. 다음에 사용자가 런처 켜면 자동으로 "업데이트 다운로드 v1.4.3" 표시됨.
+`client/manifest.json`은 자동 업데이트용 클린 산출물만 포함합니다.
 
-## 공지사항 갱신
+포함 대상:
 
-`notice.json` 수정 → `git commit && git push`. 런처 재시작 시 자동 반영.
-
-### 포맷
-```json
-{
-  "margo": [{ "id": "...", "title": "...", "date": "YYYY-MM-DD", "severity": "normal|urgent|event", "body_md": "마크다운 본문", "url": "선택적 외부 링크" }],
-  "ggouo": [{ ... }]
-}
+```text
+ClassicUO.exe
+cuo.dll
+cuoapi.dll
+FAudio.dll
+FNA3D.dll
+SDL3.dll
+libtheorafile.dll
+zlib.dll
+FNA.dll.config
+System.Buffers.dll
+System.Memory.dll
+System.Runtime.CompilerServices.Unsafe.dll
+Fonts/kodia.ttf
+version.txt
 ```
 
-severity: `normal` (일반) / `urgent` (빨강 강조) / `event` (노랑 강조)
+제외 대상:
 
-## manifest 포맷
+```text
+settings.json
+Logs/
+Macros/
+Profiles/
+Screenshots/
+*.pdb
+```
+
+런처는 manifest에 포함된 파일만 검사/다운로드/교체해야 합니다. manifest에 없는 사용자 설정, 프로필, 매크로, 로그 파일은 건드리지 않습니다.
+
+## 새 GGO CE 버전 배포 절차
+
+예시:
+
+```powershell
+.\scripts\build-manifest.ps1 `
+  -BuildPath "C:\Users\USER\Desktop\CUO-GGOCE-Test\CUO-GGOCustomEdition-v1.4.2" `
+  -Version "1.4.2" `
+  -Notes "Official ClassicUO multi reading fix + GGO CE v1.4.2"
+```
+
+스크립트가 하는 일:
+
+```text
+client/v<Version>/ 폴더 재생성
+allowlist 파일 복사
+Fonts/kodia.ttf 복사
+version.txt 생성
+client/manifest.json 갱신
+각 파일 size/sha256 기록
+```
+
+검토 후 커밋:
+
+```bash
+git status
+git diff client/manifest.json
+git add client scripts README.md
+git commit -m "Release v1.4.2 client manifest"
+git push
+```
+
+## manifest 형식
 
 ```json
 {
-  "version": "1.4.3",
-  "released": "2026-05-23T01:50:00Z",
-  "notes": "...",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.4.3/",
+  "version": "1.4.2",
+  "released": "2026-05-23T00:00:00Z",
+  "notes": "Release notes",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.4.2/",
   "files": [
-    { "path": "cuo.dll", "size": 15172096, "sha256": "..." }
+    { "path": "cuo.dll", "size": 15172096, "sha256": "..." },
+    { "path": "Fonts/kodia.ttf", "size": 3670336, "sha256": "..." }
   ]
 }
 ```
 
-런처가 manifest 파일 목록 외 파일은 **절대 건드리지 않음** → 사용자 프로필/매크로/설정 자동 보존.
+런처 주의사항:
+
+```text
+manifest.version이 로컬 버전과 같아도 files 전체를 순회해서 파일 존재 여부와 sha256을 비교해야 합니다.
+version만 같다고 최신으로 판단하면 안 됩니다.
+```
+
+GGO CE 버전 감지는 `ClassicUO.exe`가 아니라 `cuo.dll`의 PE `FileVersion` 또는 `ProductVersion`을 읽습니다.

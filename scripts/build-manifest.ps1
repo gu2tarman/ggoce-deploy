@@ -1,115 +1,148 @@
 <#
 .SYNOPSIS
-  GGO CE 새 빌드를 ggoce-deploy 레포로 가져와 manifest.json 자동 생성.
+  Copy a clean GGO CE client build into ggoce-deploy and generate client/manifest.json.
 
 .DESCRIPTION
-  사용 방법:
-    1. GGO CE 빌드 완료 후 release 폴더가 준비됨 (예: CUO-GGOCustomEdition-v1.4.3)
-    2. 이 스크립트를 ggoce-deploy 레포 루트에서 실행:
-       .\scripts\build-manifest.ps1 -BuildPath "C:\...\CUO-GGOCustomEdition-v1.4.3" -Version "1.4.3"
-    3. 자동으로:
-       a) client/v<Version>/ 폴더에 빌드 파일 복사
-       b) client/v<Version>/version.txt 생성
-       c) client/manifest.json 갱신 (모든 파일 SHA256)
-    4. git add . && git commit && git push 하면 끝
+  Default files are a conservative auto-update allowlist:
+  runtime binaries, cuo.dll, ClassicUO.exe, version.txt, and the bundled kodia font.
 
-.PARAMETER BuildPath
-  GGO CE 빌드 산출물 폴더 (예: C:\...\CUO-GGOCustomEdition-v1.4.3)
+  User-owned files are intentionally excluded:
+  settings.json, Logs, Macros, Profiles, Screenshots, and *.pdb.
 
-.PARAMETER Version
-  배포 버전 문자열 (예: "1.4.3")
-
-.PARAMETER Notes
-  manifest에 포함할 릴리스 노트 (선택)
-
-.PARAMETER Include
-  manifest에 포함할 파일 글롭 패턴 배열. 기본: *.exe, *.dll
-  PDB는 디버그 심볼이라 보통 제외. 필요 시 -Include "*.exe","*.dll","*.pdb" 식으로 추가.
+.EXAMPLE
+  .\scripts\build-manifest.ps1 `
+    -BuildPath "C:\Users\USER\Desktop\CUO-GGOCE-Test\CUO-GGOCustomEdition-v1.4.2" `
+    -Version "1.4.2" `
+    -Notes "Official ClassicUO multi reading fix + GGO CE v1.4.2"
 #>
 
 param(
     [Parameter(Mandatory=$true)][string]$BuildPath,
     [Parameter(Mandatory=$true)][string]$Version,
     [string]$Notes = "",
-    [string[]]$Include = @("*.exe", "*.dll")
+    [string[]]$Include = @(
+        "ClassicUO.exe",
+        "cuo.dll",
+        "cuoapi.dll",
+        "FAudio.dll",
+        "FNA3D.dll",
+        "SDL3.dll",
+        "libtheorafile.dll",
+        "zlib.dll",
+        "FNA.dll.config",
+        "System.Buffers.dll",
+        "System.Memory.dll",
+        "System.Runtime.CompilerServices.Unsafe.dll",
+        "Fonts/kodia.ttf"
+    )
 )
 
 $ErrorActionPreference = "Stop"
 
-# ── 경로 검증 ──────────────────────────────────────────
-if (-not (Test-Path $BuildPath -PathType Container)) {
-    throw "BuildPath가 폴더가 아닙니다: $BuildPath"
+function To-NormalizedRelativePath([string]$Path) {
+    return ($Path -replace "\\", "/").TrimStart("/")
 }
 
-$repoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
+if (-not (Test-Path -LiteralPath $BuildPath -PathType Container)) {
+    throw "BuildPath is not a directory: $BuildPath"
+}
+
+$resolvedBuildPath = (Resolve-Path -LiteralPath $BuildPath).Path
+$repoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 $clientDir = Join-Path $repoRoot "client"
 $versionDir = Join-Path $clientDir "v$Version"
 $manifestPath = Join-Path $clientDir "manifest.json"
 
-Write-Host "==> Build:    $BuildPath" -ForegroundColor Cyan
+Write-Host "==> Build:    $resolvedBuildPath" -ForegroundColor Cyan
 Write-Host "==> Version:  v$Version" -ForegroundColor Cyan
 Write-Host "==> Target:   $versionDir" -ForegroundColor Cyan
 
-if (Test-Path $versionDir) {
-    Write-Host "기존 $versionDir 폴더 발견 — 비웁니다" -ForegroundColor Yellow
-    Remove-Item -Recurse -Force $versionDir
+if (Test-Path -LiteralPath $versionDir) {
+    Write-Host "Existing $versionDir found; replacing it" -ForegroundColor Yellow
+    Remove-Item -LiteralPath $versionDir -Recurse -Force
 }
 New-Item -ItemType Directory -Path $versionDir | Out-Null
 
-# ── 파일 수집 (BuildPath 루트, Include 패턴) ─────────────
-$files = @()
-foreach ($pattern in $Include) {
-    $files += Get-ChildItem -Path $BuildPath -Filter $pattern -File
-}
-$files = $files | Sort-Object Name -Unique
-if ($files.Count -eq 0) {
-    throw "Include 패턴에 매칭되는 파일이 없습니다: $($Include -join ', ')"
+$fileMap = @{}
+
+foreach ($entry in $Include) {
+    $normalized = To-NormalizedRelativePath $entry
+    $localPattern = $normalized -replace "/", [System.IO.Path]::DirectorySeparatorChar
+    $fullPattern = Join-Path $resolvedBuildPath $localPattern
+
+    if ($normalized.Contains("*") -or $normalized.Contains("?")) {
+        $matches = Get-ChildItem -Path $fullPattern -File
+        foreach ($match in $matches) {
+            $rel = [System.IO.Path]::GetRelativePath($resolvedBuildPath, $match.FullName)
+            $rel = To-NormalizedRelativePath $rel
+            $fileMap[$rel] = $match.FullName
+        }
+        continue
+    }
+
+    if (-not (Test-Path -LiteralPath $fullPattern -PathType Leaf)) {
+        throw "Required release file is missing: $normalized"
+    }
+
+    $fileMap[$normalized] = (Resolve-Path -LiteralPath $fullPattern).Path
 }
 
-# ── 복사 + 해시 ────────────────────────────────────────
+if ($fileMap.Count -eq 0) {
+    throw "No files matched Include list."
+}
+
 $entries = @()
-foreach ($f in $files) {
-    $dest = Join-Path $versionDir $f.Name
-    Copy-Item -Path $f.FullName -Destination $dest -Force
-    $hash = (Get-FileHash $dest -Algorithm SHA256).Hash.ToLower()
+foreach ($relPath in ($fileMap.Keys | Sort-Object)) {
+    $source = $fileMap[$relPath]
+    $dest = Join-Path $versionDir ($relPath -replace "/", [System.IO.Path]::DirectorySeparatorChar)
+    $destDir = Split-Path -Parent $dest
+
+    if (-not (Test-Path -LiteralPath $destDir)) {
+        New-Item -ItemType Directory -Path $destDir | Out-Null
+    }
+
+    Copy-Item -LiteralPath $source -Destination $dest -Force
+    $item = Get-Item -LiteralPath $dest
+    $hash = (Get-FileHash -LiteralPath $dest -Algorithm SHA256).Hash.ToLower()
+
     $entries += [PSCustomObject]@{
-        path = $f.Name
-        size = $f.Length
+        path = $relPath
+        size = $item.Length
         sha256 = $hash
     }
-    Write-Host ("  + {0,-30} {1,10} bytes  sha256={2}..." -f $f.Name, $f.Length, $hash.Substring(0,12)) -ForegroundColor Gray
+
+    Write-Host ("  + {0,-55} {1,10} bytes  sha256={2}..." -f $relPath, $item.Length, $hash.Substring(0,12)) -ForegroundColor Gray
 }
 
-# ── version.txt 생성 (런처의 detect_ggoce_version 폴백 + 명시적 버전) ─
 $versionTxt = Join-Path $versionDir "version.txt"
 [System.IO.File]::WriteAllText($versionTxt, $Version, [System.Text.UTF8Encoding]::new($false))
-$vSize = (Get-Item $versionTxt).Length
-$vHash = (Get-FileHash $versionTxt -Algorithm SHA256).Hash.ToLower()
+$vItem = Get-Item -LiteralPath $versionTxt
+$vHash = (Get-FileHash -LiteralPath $versionTxt -Algorithm SHA256).Hash.ToLower()
 $entries += [PSCustomObject]@{
     path = "version.txt"
-    size = $vSize
+    size = $vItem.Length
     sha256 = $vHash
 }
-Write-Host ("  + version.txt                    {0,10} bytes  sha256={1}..." -f $vSize, $vHash.Substring(0,12)) -ForegroundColor Gray
+Write-Host ("  + version.txt                                             {0,10} bytes  sha256={1}..." -f $vItem.Length, $vHash.Substring(0,12)) -ForegroundColor Gray
 
-# ── manifest.json 작성 ─────────────────────────────────
 $baseUrl = "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v$Version/"
 $manifest = [ordered]@{
     version = $Version
-    released = (Get-Date).ToString("yyyy-MM-ddTHH:mm:ssZ")
+    released = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
     notes = $Notes
     base_url = $baseUrl
     files = $entries
 }
+
 $json = $manifest | ConvertTo-Json -Depth 5
 [System.IO.File]::WriteAllText($manifestPath, $json, [System.Text.UTF8Encoding]::new($false))
 
 Write-Host ""
-Write-Host "==> manifest 생성됨: $manifestPath" -ForegroundColor Green
-Write-Host "==> 파일 수: $($entries.Count), 총 크기: $([math]::Round(($entries | Measure-Object size -Sum).Sum / 1MB, 2)) MB" -ForegroundColor Green
+Write-Host "==> manifest created: $manifestPath" -ForegroundColor Green
+Write-Host "==> files: $($entries.Count), total size: $([math]::Round(($entries | Measure-Object size -Sum).Sum / 1MB, 2)) MB" -ForegroundColor Green
 Write-Host ""
-Write-Host "다음 명령으로 배포:" -ForegroundColor Cyan
-Write-Host "  cd `"$repoRoot`"" -ForegroundColor White
-Write-Host "  git add ." -ForegroundColor White
-Write-Host "  git commit -m `"Release v$Version`"" -ForegroundColor White
-Write-Host "  git push" -ForegroundColor White
+Write-Host "Next:" -ForegroundColor Cyan
+Write-Host "  git status" -ForegroundColor White
+Write-Host "  git diff client/manifest.json" -ForegroundColor White
+Write-Host "  git add client scripts README.md" -ForegroundColor White
+Write-Host "  git commit -m `"Release v$Version client manifest`"" -ForegroundColor White
