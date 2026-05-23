@@ -1,8 +1,8 @@
 {
-  "version": "0.1.0",
-  "released": "2026-05-23T01:50:00Z",
-  "notes": "초기 릴리스. 향후 새 버전 배포 시 이 파일에 새 url + sha256 + version 업데이트.",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.0/GGOLauncher.exe",
-  "size": 4994560,
-  "sha256": "1d26591bcb8af279fc9459a0bd267c6ae553e7f62a4269041e2202f81ebd5c8c"
+  "version": "0.1.1",
+  "released": "2026-05-23T01:55:00Z",
+  "notes": "신규 설치 흐름 + 원본 CUO 폴더 가드 + UX 수정 (모달 ESC LIFO, 백드롭 비활성, New Profile 드래프트 패턴).",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.1/GGOLauncher.exe",
+  "size": 5010944,
+  "sha256": "e4716e1deb774a151e68ca065f1ddc3c9c34118dd7a82948c33e6bcaffed602b"
 }
