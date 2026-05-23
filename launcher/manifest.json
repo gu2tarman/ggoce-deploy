@@ -1,8 +1,8 @@
 {
-  "version": "0.1.1",
-  "released": "2026-05-23T01:55:00Z",
-  "notes": "신규 설치 흐름 + 원본 CUO 폴더 가드 + UX 수정 (모달 ESC LIFO, 백드롭 비활성, New Profile 드래프트 패턴).",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.1/GGOLauncher.exe",
-  "size": 5010944,
-  "sha256": "e4716e1deb774a151e68ca065f1ddc3c9c34118dd7a82948c33e6bcaffed602b"
+  "version": "0.1.2",
+  "released": "2026-05-23T09:35:00Z",
+  "notes": "사이드바 JSON 원격 연동, MULTI LOGIN 6계정 선택 + cap, 플러그인 별명 인라인 편집, ClassicUO 안크 아이콘, 자동 업데이트 6h polling, updater TmpGuard 정리, ProductVersion 폴백.",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.2/GGOLauncher.exe",
+  "size": 5030912,
+  "sha256": "dba369f79d58a001c6eea26fc34b6ff4b1a37cce97fc684c01b5b4e1d735766f"
 }
