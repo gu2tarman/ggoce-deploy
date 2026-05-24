@@ -1,8 +1,8 @@
 {
-  "version": "0.1.3",
-  "released": "2026-05-24T00:05:00Z",
-  "notes": "UI polish — 계정 라디오 제거(MULTI 체크박스만), 프로필 pill을 MULTI n/전체 표시, 우측하단 Launcher 버전 표시. + v0.1.2.1 hotfix(에러 toast retry, MULTI cap 정합, 플러그인 별명 Escape 취소).",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.3/GGOLauncher.exe",
-  "size": 5030912,
-  "sha256": "298dea1633c2cfcd1f1d7ce4dcf6722d1dcab9d29b342dd43daaa3d6fe0cccae"
+  "version": "0.1.4",
+  "released": "2026-05-24T12:02:11Z",
+  "notes": "사이드바에 마고 서버 상태 배지를 추가하고, 사이드바 마지막 메뉴와 공지 카드 하단 정렬을 정리했습니다. 릴리즈 노트를 태그별로 관리하도록 워크플로우를 개선했습니다.",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.4/GGOLauncher.exe",
+  "size": 5060608,
+  "sha256": "dc3da45b1701deed046d5af3614dab8ce33e8b139017e5c0420613db10a652d9"
 }
