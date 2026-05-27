@@ -7,7 +7,7 @@
       "severity": "normal",
       "url": "https://open.kakao.com/o/gte6oRwi",
       "url_label": "오픈카톡 참여하기",
-      "body_md": "마고 서버 오픈카톡방이 다시 열렸습니다.\n\n아래 주소로 참여하실 수 있습니다.\n\n[https://open.kakao.com/o/gte6oRwi](https://open.kakao.com/o/gte6oRwi)\n\n런처 좌측의 **오픈카톡** 버튼도 같은 주소로 연결됩니다."
+      "body_md": "마고 서버 오픈카톡방이 다시 열렸습니다.\n\n아래 주소로 참여하실 수 있습니다.\n\n[https://open.kakao.com/o/gte6oRwi](https://open.kakao.com/o/gte6oRwi)\n\n런처 좌측의 **오픈카톡** 버튼도 같은 주소로 연결됩니다.\n\n현재 임시 운영 중인 디스코드방은 **6월 3일 삭제 예정**입니다."
     },
     {
       "id": "2026-05-26-paroxysmus-temp-spawn",
@@ -34,6 +34,15 @@
     }
   ],
   "ggouo": [
+    {
+      "id": "2026-05-27-launcher-016-update",
+      "title": "GGO Custom 런처 0.1.6 업데이트 안내",
+      "date": "2026-05-27",
+      "severity": "normal",
+      "url": "https://github.com/gu2tarman/GGOLauncher/releases/tag/v0.1.6",
+      "url_label": "전체 패치노트 보기",
+      "body_md": "**GGO Custom 런처 v0.1.6** 업데이트가 배포되었습니다.\n\n이번 업데이트는 런처를 오래 켜두는 환경에서 공지 확인이 더 자연스럽도록 개선한 소규모 패치입니다.\n\n- **공지 자동 갱신**: 런처 실행 중에도 공지를 주기적으로 백그라운드 갱신합니다.\n- **최신글 자동 새소식 표시**: 각 공지판의 최신 글만 `새소식`으로 표시되고, 뒤로 밀린 글은 자동으로 `공지`로 정리됩니다.\n- **신규 설치 보정**: 프로필이 없는 첫 사용자도 `GGO CE 설치`를 진행하면 기본 프로필이 자동 생성되도록 수정했습니다.\n- **업데이트 안내 개선**: 런처 업데이트 안내에 주요 변경 요약을 함께 표시합니다.\n\n자세한 변경 내역은 아래 링크의 전체 패치노트에서 확인할 수 있습니다."
+    },
     {
       "id": "2026-05-26-launcher-015-update",
       "title": "GGO Custom 런처 0.1.5 업데이트 안내",

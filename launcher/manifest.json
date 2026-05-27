@@ -1,8 +1,8 @@
 {
-  "version": "0.1.5",
-  "released": "2026-05-26T07:42:18Z",
-  "notes": "메인에 표시할 프로필을 최대 2개까지 직접 선택할 수 있도록 개선하고, 계정별 캐릭터명 지정 및 CUO 프로필 기록 기반 입력 후보를 추가했습니다. 공지 접힘/링크 UX와 플러그인 커서 표시도 정리했습니다.",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.5/GGOLauncher.exe",
+  "version": "0.1.6",
+  "released": "2026-05-27T13:04:15Z",
+  "notes": "공지 자동 갱신과 최신글 새소식 자동 표시를 추가하고, 프로필이 없는 신규 사용자의 GGO CE 설치 흐름을 보정했습니다.",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.6/GGOLauncher.exe",
   "size": 5090304,
-  "sha256": "21bad90629c06268d1de8fba2672cd05f9fb211d9348813e68110cd1a23c639b"
+  "sha256": "2f4d783df7442d901e1d565df94411c6e45366ec896150608a614999c37e1996"
 }
