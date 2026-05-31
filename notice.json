@@ -1,6 +1,13 @@
 {
   "margo": [
     {
+      "id": "2026-05-31-paroxysmus-restored",
+      "title": "파록시무스 정상화 안내",
+      "date": "2026-05-31",
+      "severity": "normal",
+      "body_md": "문제로 예상됐던 부분을 수정하여 **보스키 입장 형식**으로 정상화했습니다.\n\n감사합니다."
+    },
+    {
       "id": "2026-05-27-margo-openchat-open",
       "title": "마고 오픈카톡방 오픈 안내",
       "date": "2026-05-27",
