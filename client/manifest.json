@@ -1,8 +1,8 @@
 {
-    "version":  "1.4.2",
-    "released":  "2026-05-23T00:59:18Z",
-    "notes":  "Official ClassicUO multi reading fix + GGO CE v1.4.2",
-    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.4.2/",
+    "version":  "1.5.0.0",
+    "released":  "2026-06-08T02:56:44Z",
+    "notes":  "GGO CE v1.5.0.0 auto loot rule net and options update",
+    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.5.0.0/",
     "files":  [
                   {
                       "path":  "ClassicUO.exe",
@@ -11,8 +11,8 @@
                   },
                   {
                       "path":  "cuo.dll",
-                      "size":  15172096,
-                      "sha256":  "cd79a6d68d415eb4307452b0b61502cde0d70a16d93b0f57b06b46c303b54cae"
+                      "size":  15290368,
+                      "sha256":  "2385469c043e94149807154c15586ffd883bb7e0e8ff4abb9c59f1b539fe132a"
                   },
                   {
                       "path":  "cuoapi.dll",
@@ -71,8 +71,8 @@
                   },
                   {
                       "path":  "version.txt",
-                      "size":  5,
-                      "sha256":  "8ec5a17af8275faf8adc4a9ef9a201cd68d26fe6216e78450e871070a46bbd50"
+                      "size":  7,
+                      "sha256":  "b212902348c2e6f4c09f4ec3b94cce4955261c5c378f4d96b3b2c3fb03a1679f"
                   }
               ]
 }
