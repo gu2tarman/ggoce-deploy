@@ -3,7 +3,7 @@
     {
       "label": "MARGO",
       "buttons": [
-        { "label": "Discord", "url": "https://discord.gg/VGfYrJFXtH" },
+        { "label": "설정 가이드", "url": "https://docs.google.com/presentation/d/1iA6vzvoBJPdn_FnCCv4HwOVrhrgPSv4OAhWop-rcqAo/present?usp=sharing" },
         { "label": "Website", "url": "http://158.180.71.77/" },
         { "label": "오픈카톡", "url": "https://open.kakao.com/o/gte6oRwi" }
       ]
