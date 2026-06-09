@@ -1,8 +1,8 @@
 {
-    "version":  "1.5.0.1",
-    "released":  "2026-06-08T08:42:23Z",
-    "notes":  "GGO CE v1.5.0.1 auto loot journal and compact summary update",
-    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.5.0.1/",
+    "version":  "1.5.0.2",
+    "released":  "2026-06-09T02:49:59Z",
+    "notes":  "GGO CE v1.5.0.2 auto loot summary custom add polish",
+    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.5.0.2/",
     "files":  [
                   {
                       "path":  "ClassicUO.exe",
@@ -11,8 +11,8 @@
                   },
                   {
                       "path":  "cuo.dll",
-                      "size":  15342592,
-                      "sha256":  "b0affb7a8955aabb2b7f3097185be06161e21516b64a3cbf38b991bd2768c665"
+                      "size":  15346176,
+                      "sha256":  "bae61504e8376df1a2f4ee30a9cd30416d908e67175851a580bce414ab254fc6"
                   },
                   {
                       "path":  "cuoapi.dll",
@@ -65,14 +65,14 @@
                       "sha256":  "37768488e8ef45729bc7d9a2677633c6450042975bb96516e186da6cb9cd0dcf"
                   },
                   {
-                      "path":  "version.txt",
-                      "size":  7,
-                      "sha256":  "bfaa4f20e0124f73994101577ed8d6acf9903ca5741b82cf682d40bef63b89c9"
-                  },
-                  {
                       "path":  "zlib.dll",
                       "size":  113152,
                       "sha256":  "fcf9f36b66fd053e4bfe4c599d5bd37bc66d6891a7af8616079786b942f316f3"
+                  },
+                  {
+                      "path":  "version.txt",
+                      "size":  7,
+                      "sha256":  "c68569a10667ac93c388a2f713901724e42040e6982fd6ebada769957a872ad2"
                   }
               ]
 }

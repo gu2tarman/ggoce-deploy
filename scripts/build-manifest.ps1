@@ -43,6 +43,11 @@ function To-NormalizedRelativePath([string]$Path) {
     return ($Path -replace "\\", "/").TrimStart("/")
 }
 
+function Write-Utf8NoBomLf([string]$Path, [string]$Content) {
+    $normalized = $Content.Replace("`r`n", "`n").Replace("`r", "`n")
+    [System.IO.File]::WriteAllText($Path, $normalized, [System.Text.UTF8Encoding]::new($false))
+}
+
 if (-not (Test-Path -LiteralPath $BuildPath -PathType Container)) {
     throw "BuildPath is not a directory: $BuildPath"
 }
@@ -115,7 +120,7 @@ foreach ($relPath in ($fileMap.Keys | Sort-Object)) {
 }
 
 $versionTxt = Join-Path $versionDir "version.txt"
-[System.IO.File]::WriteAllText($versionTxt, $Version, [System.Text.UTF8Encoding]::new($false))
+Write-Utf8NoBomLf $versionTxt $Version
 $vItem = Get-Item -LiteralPath $versionTxt
 $vHash = (Get-FileHash -LiteralPath $versionTxt -Algorithm SHA256).Hash.ToLower()
 $entries += [PSCustomObject]@{
@@ -135,7 +140,7 @@ $manifest = [ordered]@{
 }
 
 $json = $manifest | ConvertTo-Json -Depth 5
-[System.IO.File]::WriteAllText($manifestPath, $json, [System.Text.UTF8Encoding]::new($false))
+Write-Utf8NoBomLf $manifestPath $json
 
 Write-Host ""
 Write-Host "==> manifest created: $manifestPath" -ForegroundColor Green
