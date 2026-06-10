@@ -1,8 +1,8 @@
 {
-    "version":  "1.5.0.2",
-    "released":  "2026-06-09T02:49:59Z",
-    "notes":  "GGO CE v1.5.0.2 auto loot summary custom add polish",
-    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.5.0.2/",
+    "version":  "1.5.0.3",
+    "released":  "2026-06-10T11:47:35Z",
+    "notes":  "GGO CE v1.5.0.3 auto loot human corpse fixes",
+    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.5.0.3/",
     "files":  [
                   {
                       "path":  "ClassicUO.exe",
@@ -11,8 +11,8 @@
                   },
                   {
                       "path":  "cuo.dll",
-                      "size":  15346176,
-                      "sha256":  "bae61504e8376df1a2f4ee30a9cd30416d908e67175851a580bce414ab254fc6"
+                      "size":  15349248,
+                      "sha256":  "a0338a79c5ebde3cd2dac157d129199af78c8be7c60c9c94c1f3b7dd652fcc9c"
                   },
                   {
                       "path":  "cuoapi.dll",
@@ -72,7 +72,7 @@
                   {
                       "path":  "version.txt",
                       "size":  7,
-                      "sha256":  "c68569a10667ac93c388a2f713901724e42040e6982fd6ebada769957a872ad2"
+                      "sha256":  "3247ecb2c6def6b85c5de546a79bfb7d05b06f4ac3cc7cf96c6962d79922e75f"
                   }
               ]
 }
