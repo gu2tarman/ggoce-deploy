@@ -1,18 +1,18 @@
 {
-    "version":  "1.5.0.3",
-    "released":  "2026-06-10T11:47:35Z",
-    "notes":  "GGO CE v1.5.0.3 auto loot human corpse fixes",
-    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.5.0.3/",
+    "version":  "1.5.0.4",
+    "released":  "2026-06-12T13:36:23Z",
+    "notes":  "GGO CE 1.5.0.4: auto-reconnect recovery system (opt-in), pathfinder improvements, GGO custom options rework",
+    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.5.0.4/",
     "files":  [
                   {
                       "path":  "ClassicUO.exe",
                       "size":  201216,
-                      "sha256":  "8ea95b44e57c0228781e8cbe9ddedb2558df0543131c1a871ac0abc9ffb9c205"
+                      "sha256":  "51e4c9f007547175dd39523c408f0c500a85c6a3c7c10a9e6a1abe535d92be24"
                   },
                   {
                       "path":  "cuo.dll",
-                      "size":  15349248,
-                      "sha256":  "a0338a79c5ebde3cd2dac157d129199af78c8be7c60c9c94c1f3b7dd652fcc9c"
+                      "size":  15435264,
+                      "sha256":  "973cf1a2775d122a2289e93c6bcb7ae2c0f256a4c8bf2371a3e4cc5efc954ca8"
                   },
                   {
                       "path":  "cuoapi.dll",
@@ -72,7 +72,7 @@
                   {
                       "path":  "version.txt",
                       "size":  7,
-                      "sha256":  "3247ecb2c6def6b85c5de546a79bfb7d05b06f4ac3cc7cf96c6962d79922e75f"
+                      "sha256":  "8c43542a16485e5123974fc24ac2985565bb841838340c737188c39aec97c6b4"
                   }
               ]
 }
