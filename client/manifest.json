@@ -1,8 +1,8 @@
 {
-    "version":  "1.5.0.4",
-    "released":  "2026-06-12T13:36:23Z",
-    "notes":  "GGO CE 1.5.0.4: auto-reconnect recovery system (opt-in), pathfinder improvements, GGO custom options rework",
-    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.5.0.4/",
+    "version":  "1.5.0.5",
+    "released":  "2026-06-17T15:44:57Z",
+    "notes":  "GGO CE 1.5.0.5: manual animation cache flush command (-flushanim) for long heavy multi-client sessions",
+    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.5.0.5/",
     "files":  [
                   {
                       "path":  "ClassicUO.exe",
@@ -11,8 +11,8 @@
                   },
                   {
                       "path":  "cuo.dll",
-                      "size":  15435264,
-                      "sha256":  "973cf1a2775d122a2289e93c6bcb7ae2c0f256a4c8bf2371a3e4cc5efc954ca8"
+                      "size":  15438848,
+                      "sha256":  "01beff7ae476bf791f99ada98a467cf7f0bb2611fe69915eed11a7b711704bc1"
                   },
                   {
                       "path":  "cuoapi.dll",
@@ -72,7 +72,7 @@
                   {
                       "path":  "version.txt",
                       "size":  7,
-                      "sha256":  "8c43542a16485e5123974fc24ac2985565bb841838340c737188c39aec97c6b4"
+                      "sha256":  "4c15e63f50b62458823b90dec196e97e8e76188145ae5e0a87452ea039f37cac"
                   }
               ]
 }
