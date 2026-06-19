@@ -1,8 +1,8 @@
 {
-  "version": "0.1.6",
-  "released": "2026-05-27T13:04:15Z",
-  "notes": "공지 자동 갱신과 최신글 새소식 자동 표시를 추가하고, 프로필이 없는 신규 사용자의 GGO CE 설치 흐름을 보정했습니다.",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.6/GGOLauncher.exe",
-  "size": 5090304,
-  "sha256": "2f4d783df7442d901e1d565df94411c6e45366ec896150608a614999c37e1996"
+  "version": "0.1.7",
+  "released": "2026-06-19T14:10:47Z",
+  "notes": "상단 실행 버튼 영역을 키우고, 설정 가이드를 처음 보는 사용자에게 강조 표시하도록 개선했습니다.",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.7/GGOLauncher.exe",
+  "size": 5057024,
+  "sha256": "35ceb6719bc0ec0324a73973bc7d0fd8e8994dc3c008daf70591d61512cfb600"
 }
