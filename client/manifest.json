@@ -1,8 +1,8 @@
 {
-    "version":  "1.5.0.6",
-    "released":  "2026-06-21T13:36:02Z",
-    "notes":  "향상된 버프 바, 그리드뷰 개선, 버프 툴팁 수정",
-    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.5.0.6/",
+    "version":  "1.6.0.0",
+    "released":  "2026-06-25T11:20:24Z",
+    "notes":  "GGO CE 1.6.0.0: modern UI polish for auto-loot gumps, paperdoll nameplate, and buff bar anchor. Modern UI can be disabled in Options.",
+    "base_url":  "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.0/",
     "files":  [
                   {
                       "path":  "ClassicUO.exe",
@@ -11,8 +11,8 @@
                   },
                   {
                       "path":  "cuo.dll",
-                      "size":  15461376,
-                      "sha256":  "871ac467b00de431a678bfb936b719659a5d0f61c2ca12b68accf5eb75c6d97b"
+                      "size":  16068608,
+                      "sha256":  "6bfd837497913777e94f5f8966d25bd6fd9c85501cfc70374dd2a7c2757ada85"
                   },
                   {
                       "path":  "cuoapi.dll",
@@ -72,7 +72,7 @@
                   {
                       "path":  "version.txt",
                       "size":  7,
-                      "sha256":  "6d9989937fe139b81f2b02d1ee70e399a913403bd9461b832a2fe265da96de18"
+                      "sha256":  "33f2a2a51dfac1b1e1737ad7cbfdd48f82ce0731eeece0dff19b567b82e89c3b"
                   }
               ]
 }
