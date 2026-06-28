@@ -1,18 +1,18 @@
 {
-  "version": "1.6.0.2",
-  "released": "2026-06-28T00:57:26Z",
-  "notes": "DirectX 11 렌더러 선택이 적용되지 않던 문제를 수정하고, GGO Custom 옵션에서 그래픽 렌더러를 선택할 수 있도록 추가했습니다.",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.2/",
+  "version": "1.6.0.3",
+  "released": "2026-06-28T12:16:58Z",
+  "notes": "오리지널 ClassicUO 최신 공식 패치 흡수 + 오토루팅 커스텀 목록 이름 일치 옵션",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.3/",
   "files": [
     {
       "path": "ClassicUO.exe",
       "size": 201216,
-      "sha256": "745cd171b6a52d999101ed3150943f3c5806b7d3c6c576ccb1adeee41619bd39"
+      "sha256": "89c9b6822e96dd958b78c35e71f3f126637889b527e1f2924edd5f83321db091"
     },
     {
       "path": "cuo.dll",
-      "size": 16068096,
-      "sha256": "7ac680a3a738c0e6e6497ce603d199a6a48f4ca3c3f0c1170ec507b4d7481e1e"
+      "size": 16085504,
+      "sha256": "00f3d1d3612aa40e7bb3db7de5467b65016784fc30216f33dc1f176e071a6705"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "5b4e24e8650d8d9004ce392143056e052fda4a3bc7e8479974873fce93e4781b"
+      "sha256": "6d52f10b763b343cb53e7bf1551c01d81e02110cfecdbd8681054da1a54d513b"
     }
   ]
 }
