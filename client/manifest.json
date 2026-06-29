@@ -1,18 +1,18 @@
 {
-  "version": "1.6.0.3",
-  "released": "2026-06-28T12:16:58Z",
-  "notes": "오리지널 ClassicUO 최신 공식 패치 흡수 + 오토루팅 커스텀 목록 이름 일치 옵션",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.3/",
+  "version": "1.6.0.4",
+  "released": "2026-06-29T04:30:49Z",
+  "notes": "오토루팅 장비 추천 표시/정렬 개선 + 시체 자동열기 및 루팅 시간 조정 옵션",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.4/",
   "files": [
     {
       "path": "ClassicUO.exe",
       "size": 201216,
-      "sha256": "89c9b6822e96dd958b78c35e71f3f126637889b527e1f2924edd5f83321db091"
+      "sha256": "25aa66cf9528b6cf8e430db92e5d16894e1fc5de2fc04d4fef5bd65435d3794e"
     },
     {
       "path": "cuo.dll",
-      "size": 16085504,
-      "sha256": "00f3d1d3612aa40e7bb3db7de5467b65016784fc30216f33dc1f176e071a6705"
+      "size": 16103936,
+      "sha256": "b1ea0347f0d167dfe1765d119a56d7799228ce4a3fdfcd10735dbea8b0f3ae21"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "6d52f10b763b343cb53e7bf1551c01d81e02110cfecdbd8681054da1a54d513b"
+      "sha256": "5134cc242abdd5e7abfe45fa90e0938f5705c222ef41af58627a134938049126"
     }
   ]
 }
