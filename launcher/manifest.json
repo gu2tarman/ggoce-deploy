@@ -1,8 +1,8 @@
 {
-  "version": "0.1.7",
-  "released": "2026-06-19T14:10:47Z",
-  "notes": "상단 실행 버튼 영역을 키우고, 설정 가이드를 처음 보는 사용자에게 강조 표시하도록 개선했습니다.",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.7/GGOLauncher.exe",
-  "size": 5057024,
-  "sha256": "35ceb6719bc0ec0324a73973bc7d0fd8e8994dc3c008daf70591d61512cfb600"
+  "version": "0.1.8",
+  "released": "2026-06-29T10:26:14Z",
+  "notes": "일부 네트워크 환경에서 업데이트 체크/다운로드가 실패하던 문제를 개선했습니다. (업데이트 서버 접속이 막힌 경우 자동으로 미러 경로로 우회)",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.8/GGOLauncher.exe",
+  "size": 5061632,
+  "sha256": "1f825e6247eac1a7e86f8b210920ead651d2f5023c3f1f19e0e330ed82540692"
 }

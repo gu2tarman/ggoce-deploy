@@ -42,6 +42,15 @@
   ],
   "ggouo": [
     {
+      "id": "2026-06-29-ggouo-59f529",
+      "title": "GGO Launcher 0.1.8",
+      "date": "2026-06-29",
+      "severity": "normal",
+      "url": "https://github.com/gu2tarman/GGOLauncher/releases/tag/v0.1.8",
+      "url_label": "전체 패치노트",
+      "body_md": "**v0.1.8** 일부 네트워크 환경에서 업데이트 체크/다운로드가 실패하던 문제를 개선했습니다. 업데이트 서버 접속이 막힌 경우 자동으로 미러 경로로 우회합니다."
+    },
+    {
       "id": "2026-06-29-ggouo-v1.6.0.5",
       "title": "GGO CE 1.6.0.5 hotfix",
       "date": "2026-06-29",
