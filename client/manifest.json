@@ -1,18 +1,18 @@
 {
-  "version": "1.6.0.7",
-  "released": "2026-07-04T16:03:18Z",
-  "notes": "GGO CE 1.6.0.7: HUD stat bar, heal helper, anchored buff bar support, grid view position restore and drag-area fixes.",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.7/",
+  "version": "1.6.0.8",
+  "released": "2026-07-04T16:47:53Z",
+  "notes": "GGO CE 1.6.0.8: hotfix for overlapping container and grid-view restore positions.",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.8/",
   "files": [
     {
       "path": "ClassicUO.exe",
       "size": 201216,
-      "sha256": "154a2975fd4fc0df3933f24d4c864fe37110af6c1eacc58418a72d70df20c869"
+      "sha256": "66cdc67a3a108195c807e337b041cf08c83b2a8b670e8a5a9e38233379e0b463"
     },
     {
       "path": "cuo.dll",
       "size": 17026048,
-      "sha256": "6ba0750775435cb43623c4f698b0eb78d5f83b5c77d5b0c3d14d54fd9f574ee8"
+      "sha256": "341420e787aaf06b9a74e52c1789036af70b10b562e7eda3766507027f120661"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "a5681845484ce3e619779c1683d1a7de0a25b98130063aa5344c97e1f3bda478"
+      "sha256": "fc2d613deeeaf452df4f890be28ca49f46ea4383f5eb896e400069e9c8e598b3"
     }
   ]
 }
