@@ -1,18 +1,18 @@
 {
-  "version": "1.6.0.6",
-  "released": "2026-07-03T11:16:03Z",
-  "notes": "GGO CE 1.6.0.6: 그리드 뷰 모던 UI (장식 패널, 스냅 리사이즈, 스크롤, 크기 기억, 슬롯 크기 옵션)",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.6/",
+  "version": "1.6.0.7",
+  "released": "2026-07-04T16:03:18Z",
+  "notes": "GGO CE 1.6.0.7: HUD stat bar, heal helper, anchored buff bar support, grid view position restore and drag-area fixes.",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.7/",
   "files": [
     {
       "path": "ClassicUO.exe",
       "size": 201216,
-      "sha256": "17df84b34dd68adede02b17cf006903c643f6be78dfe2f467e51cc615ad9142d"
+      "sha256": "154a2975fd4fc0df3933f24d4c864fe37110af6c1eacc58418a72d70df20c869"
     },
     {
       "path": "cuo.dll",
-      "size": 16169984,
-      "sha256": "5000a929c067fb9afb75896d5f41327f63cd770d04b358e907117dd145f0f58b"
+      "size": 17026048,
+      "sha256": "6ba0750775435cb43623c4f698b0eb78d5f83b5c77d5b0c3d14d54fd9f574ee8"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "1c9ffa5e37b4b8dc2329a5b87cce9517a15e9ce0d5ca45acb120a5dbfeb8c30b"
+      "sha256": "a5681845484ce3e619779c1683d1a7de0a25b98130063aa5344c97e1f3bda478"
     }
   ]
 }
