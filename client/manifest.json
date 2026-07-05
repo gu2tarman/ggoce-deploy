@@ -1,8 +1,8 @@
 {
-  "version": "1.6.0.8",
-  "released": "2026-07-04T16:47:53Z",
-  "notes": "GGO CE 1.6.0.8: hotfix for overlapping container and grid-view restore positions.",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.8/",
+  "version": "1.6.0.9",
+  "released": "2026-07-05T10:03:40Z",
+  "notes": "GGO CE 1.6.0.9: grid container docking, saved dock restore, and grid loot favorites.",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.9/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 17026048,
-      "sha256": "341420e787aaf06b9a74e52c1789036af70b10b562e7eda3766507027f120661"
+      "size": 17101312,
+      "sha256": "9b0f0618cc6e114a611c6bdecff5a5221b5435102bf3d63397b23b1fb6146ca7"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "fc2d613deeeaf452df4f890be28ca49f46ea4383f5eb896e400069e9c8e598b3"
+      "sha256": "6139e9927713b4f24c6c499b9c18761fae737ca33cefce6c96b7d1630973445a"
     }
   ]
 }
