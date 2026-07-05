@@ -1,8 +1,8 @@
 {
-  "version": "1.6.0.9",
-  "released": "2026-07-05T10:03:40Z",
-  "notes": "GGO CE 1.6.0.9: grid container docking, saved dock restore, and grid loot favorites.",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.0.9/",
+  "version": "1.6.1.0",
+  "released": "2026-07-05T13:42:55Z",
+  "notes": "GGO CE 1.6.1.0: grid container interaction update and HUD stat bar duplicate fix",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.1.0/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 17101312,
-      "sha256": "9b0f0618cc6e114a611c6bdecff5a5221b5435102bf3d63397b23b1fb6146ca7"
+      "size": 17107456,
+      "sha256": "a661fa0bbdcf300160198ff3e8d16af8ce21f767f32df9b4c6ad94eb5919bd52"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "6139e9927713b4f24c6c499b9c18761fae737ca33cefce6c96b7d1630973445a"
+      "sha256": "1da112e904fd8855aaad221cb5294171dcc4620d88bfea83369779c355cf42e7"
     }
   ]
 }
