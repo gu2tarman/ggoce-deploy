@@ -1,8 +1,8 @@
 {
-  "version": "1.6.1.0",
-  "released": "2026-07-05T13:42:55Z",
-  "notes": "GGO CE 1.6.1.0: grid container interaction update and HUD stat bar duplicate fix",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.1.0/",
+  "version": "1.6.1.2",
+  "released": "2026-07-06T15:16:14Z",
+  "notes": "GGO CE 1.6.1.2: 파티/펫 체력바 접속감지 자동 숨김 + GGO 체력바 스킨",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.1.2/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 17107456,
-      "sha256": "a661fa0bbdcf300160198ff3e8d16af8ce21f767f32df9b4c6ad94eb5919bd52"
+      "size": 17140224,
+      "sha256": "570d2bcdffdb6102b583c19c65903f6b2d1af8a165e9b67313e6a66e6b2b13b9"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "1da112e904fd8855aaad221cb5294171dcc4620d88bfea83369779c355cf42e7"
+      "sha256": "dd9f214b8af990e1895153b101ae15b48011f8ac8af13b9e26294805fd221cb9"
     }
   ]
 }
