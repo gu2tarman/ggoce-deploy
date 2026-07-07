@@ -1,8 +1,8 @@
 {
-  "version": "1.6.1.2",
-  "released": "2026-07-06T15:16:14Z",
-  "notes": "GGO CE 1.6.1.2: 파티/펫 체력바 접속감지 자동 숨김 + GGO 체력바 스킨",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.1.2/",
+  "version": "1.6.1.3",
+  "released": "2026-07-07T12:55:39Z",
+  "notes": "GGO CE 1.6.1.3: 스탯 인사이트/스탯 가드/LMC 미터 + 창 크기 버그 수정",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.1.3/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 17140224,
-      "sha256": "570d2bcdffdb6102b583c19c65903f6b2d1af8a165e9b67313e6a66e6b2b13b9"
+      "size": 17171968,
+      "sha256": "37a909e404af4ac455ed86a60ebd5261a6d0d57ae5b93208c8f0c8a84f747661"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "dd9f214b8af990e1895153b101ae15b48011f8ac8af13b9e26294805fd221cb9"
+      "sha256": "22f663625df325aaf2d4c75162cfc9dfab9e7f531f9973fa2e57ceeb4de808a8"
     }
   ]
 }
