@@ -1,8 +1,8 @@
 {
   "version": "0.1.9",
-  "released": "2026-07-09T01:58:42Z",
+  "released": "2026-07-09T04:46:55Z",
   "notes": "설정 가이드 & Wiki 버튼의 첫 실행 필독 강조가 라벨 변경 후에도 유지되도록 개선했습니다.",
   "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.1.9/GGOLauncher.exe",
-  "size": 5093376,
-  "sha256": "be821a98f6cd47cac1d40e2f5084e483e18acfbce78b0e33e20a8d97dbff2b8c"
+  "size": 5083136,
+  "sha256": "ac2729e8a4bdfb4d3379c7e1e8a3d5603d6605727c5af2916706426b50413914"
 }
