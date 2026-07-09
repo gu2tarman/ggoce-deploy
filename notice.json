@@ -42,6 +42,15 @@
   ],
   "ggouo": [
     {
+      "id": "2026-07-09-ggouo-6f5178",
+      "title": "GGO Custom 런처 0.1.9 업데이트 안내",
+      "date": "2026-07-09",
+      "severity": "normal",
+      "url": "https://github.com/gu2tarman/GGOLauncher/releases/tag/v0.1.9",
+      "url_label": "전체 패치노트 보기",
+      "body_md": "GGO Custom 런처 v0.1.9 업데이트가 배포되었습니다. 설정 가이드/Wiki 버튼명이 바뀌어도 첫 실행 필독 강조와 열람 기록이 유지됩니다."
+    },
+    {
       "id": "2026-07-08-ggouo-486841",
       "title": "GGO CE 1.6.1.4 패치노트",
       "date": "2026-07-08",
