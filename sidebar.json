@@ -4,7 +4,7 @@
       "label": "MARGO",
       "buttons": [
         { "label": "설정 가이드 & Wiki", "url": "https://gu2tarman.github.io/ggoce-docs/" },
-        { "label": "Website", "url": "http://158.180.71.77/" },
+        { "label": "홈페이지", "url": "http://158.180.71.77/" },
         { "label": "오픈카톡", "url": "https://open.kakao.com/o/gte6oRwi" }
       ]
     },
