@@ -1,8 +1,8 @@
 {
-  "version": "1.6.1.4",
-  "released": "2026-07-08T02:32:27Z",
-  "notes": "GGO CE 1.6.1.4: 체력바 클릭 액션 + 발밑 헬스바 상시 표시",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.1.4/",
+  "version": "1.6.1.5",
+  "released": "2026-07-10T12:44:32Z",
+  "notes": "GGO CE 1.6.1.5: 게임창 테두리 도킹 + 스탯 가드 개선",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.1.5/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 17174528,
-      "sha256": "45dc66e242f6f4c85028c10f46576dc4b58bd05bd7ae85884c11b7b600b987d7"
+      "size": 17223168,
+      "sha256": "2e219064eb293a7224a69a3e20c19e350038387ae4218473b0a3a32a129b322d"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "53510305f039909750711effdff8d451bcabf6b9fe808da6ae62b2295ba946ee"
+      "sha256": "8f3e19529e8479bf84ff8a99f30f59fdc26395aaa4471ba8f519a33dcad0124b"
     }
   ]
 }
