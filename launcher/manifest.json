@@ -1,8 +1,8 @@
 {
-  "version": "0.2.0",
-  "released": "2026-07-10T00:26:15Z",
-  "notes": "프로필 순서 기반 빠른 전환, 실시간 드래그 재배치, 통합 플러그인 추가 UI",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.0/GGOLauncher.exe",
-  "size": 5067776,
-  "sha256": "6e110a1c97171421df01c907514be1dcdf17f310a79083cac4501b4ffeec45cd"
+  "version": "0.2.1",
+  "released": "2026-07-11T07:00:36Z",
+  "notes": "배경 키 아트·글래스 UI 비주얼 리워크, Pretendard 내장, 원격 배경 관리 지원",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.1/GGOLauncher.exe",
+  "size": 7460864,
+  "sha256": "83f1b964fb20150cdd1c7cb0a56376142f848bc8b1ffebd8427c37d506bf55e1"
 }
