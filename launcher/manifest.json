@@ -1,8 +1,8 @@
 {
-  "version": "0.2.1",
-  "released": "2026-07-11T07:00:36Z",
-  "notes": "배경 키 아트·글래스 UI 비주얼 리워크, Pretendard 내장, 원격 배경 관리 지원",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.1/GGOLauncher.exe",
-  "size": 7460864,
-  "sha256": "83f1b964fb20150cdd1c7cb0a56376142f848bc8b1ffebd8427c37d506bf55e1"
+  "version": "0.2.2",
+  "released": "2026-07-12T04:54:59Z",
+  "notes": "버튼 비주얼 리워크(고스트+호버 필), 비상 알림 시스템(원격 버튼 점등·긴급 배너) 추가",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.2/GGOLauncher.exe",
+  "size": 7462400,
+  "sha256": "7c16cb8e6b41c1db2aebf2ba9b0900091c4d2215c2021289dc44017aa91b0901"
 }
