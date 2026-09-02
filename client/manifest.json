@@ -1,18 +1,18 @@
 {
-  "version": "1.6.1.8",
-  "released": "2026-08-18T08:29:32Z",
-  "notes": "GGO CE 1.6.1.8: 페이퍼돌·필드 장비 표시 순서 및 가림 처리 개선",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.1.8/",
+  "version": "1.6.1.9",
+  "released": "2026-09-02T14:48:57Z",
+  "notes": "GGO CE 1.6.1.9: 멀티클라이언트 리더 패널 및 특수 방어 옵션 강조 추가",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.1.9/",
   "files": [
     {
       "path": "cuo.dll",
-      "size": 17325056,
-      "sha256": "7777d61fb54f0b525c4bf92f2d277c89656b67b8129d46c60265e2e5688a5349"
+      "size": 17561600,
+      "sha256": "b9b463f8a8d1f7d93f0b9d57aca9fc0de10ea2ec5fe5232c2b152b5e48ab213b"
     },
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "bdaee388ba7a0fe700065833d5fb319c13b578ba03581fc064413214a3a27068"
+      "sha256": "2473a61305a26aee964ae9dcc24152c431555338dadaf6e1711f5a8b4331ac2d"
     }
   ]
 }
