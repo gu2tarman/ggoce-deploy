@@ -20,24 +20,14 @@ param(
     [Parameter(Mandatory=$true)][string]$BuildPath,
     [Parameter(Mandatory=$true)][string]$Version,
     [string]$Notes = "",
-    [string[]]$Include = @(
-        "ClassicUO.exe",
-        "cuo.dll",
-        "cuoapi.dll",
-        "FAudio.dll",
-        "FNA3D.dll",
-        "SDL3.dll",
-        "libtheorafile.dll",
-        "zlib.dll",
-        "FNA.dll.config",
-        "System.Buffers.dll",
-        "System.Memory.dll",
-        "System.Runtime.CompilerServices.Unsafe.dll",
-        "Fonts/kodia.ttf"
-    )
+    [string[]]$Include
 )
 
 $ErrorActionPreference = "Stop"
+. (Join-Path $PSScriptRoot 'client-package.ps1')
+if (-not $Include) {
+    $Include = @(Get-RequiredClientFiles | Where-Object { $_ -ne 'version.txt' })
+}
 
 function To-NormalizedRelativePath([string]$Path) {
     return ($Path -replace "\\", "/").TrimStart("/")
@@ -61,12 +51,6 @@ $manifestPath = Join-Path $clientDir "manifest.json"
 Write-Host "==> Build:    $resolvedBuildPath" -ForegroundColor Cyan
 Write-Host "==> Version:  v$Version" -ForegroundColor Cyan
 Write-Host "==> Target:   $versionDir" -ForegroundColor Cyan
-
-if (Test-Path -LiteralPath $versionDir) {
-    Write-Host "Existing $versionDir found; replacing it" -ForegroundColor Yellow
-    Remove-Item -LiteralPath $versionDir -Recurse -Force
-}
-New-Item -ItemType Directory -Path $versionDir | Out-Null
 
 $fileMap = @{}
 
@@ -95,6 +79,15 @@ foreach ($entry in $Include) {
 if ($fileMap.Count -eq 0) {
     throw "No files matched Include list."
 }
+
+# Validate the complete source inventory before replacing an existing package.
+Assert-ClientPackageComplete -Paths (@($fileMap.Keys) + @('version.txt'))
+
+if (Test-Path -LiteralPath $versionDir) {
+    Write-Host "Existing $versionDir found; replacing it" -ForegroundColor Yellow
+    Remove-Item -LiteralPath $versionDir -Recurse -Force
+}
+New-Item -ItemType Directory -Path $versionDir | Out-Null
 
 $entries = @()
 foreach ($relPath in ($fileMap.Keys | Sort-Object)) {

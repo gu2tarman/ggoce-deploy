@@ -84,6 +84,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $RepoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
+. (Join-Path $PSScriptRoot 'client-package.ps1')
 
 # ---------------------------------------------------------------------------
 # Encoding-safe helpers. PowerShell 5.1's default encoding mangles UTF-8 JSON
@@ -223,8 +224,31 @@ function Invoke-Manifest() {
 # verify
 # ---------------------------------------------------------------------------
 
+# Highest complete client package below $CurrentVersion, for scope diffing.
+function Get-PreviousVersionDir([string]$CurrentVersion) {
+    $clientDir = Join-Path $RepoRoot 'client'
+    if (-not (Test-Path -LiteralPath $clientDir)) { return $null }
+    $cur = $null
+    if (-not [version]::TryParse($CurrentVersion, [ref]$cur)) { return $null }
+    $best = $null
+    foreach ($d in (Get-ChildItem -LiteralPath $clientDir -Directory -Filter 'v*')) {
+        $vs = $d.Name.Substring(1)
+        $v = $null
+        if (-not [version]::TryParse($vs, [ref]$v)) { continue }
+        $missing = @(Get-RequiredClientFiles | Where-Object {
+            -not (Test-Path -LiteralPath (Join-Path $d.FullName $_) -PathType Leaf)
+        })
+        if ($missing.Count -gt 0) { continue }
+        if ($v -lt $cur -and ($null -eq $best -or $v -gt $best.Ver)) {
+            $best = [pscustomobject]@{ Ver = $v; Name = $vs; Path = $d.FullName }
+        }
+    }
+    return $best
+}
+
 function Invoke-Verify() {
     $problems = @()
+    $warnings = @()
     $checked = 0
 
     $jsonFiles = Get-ChildItem -LiteralPath $RepoRoot -Recurse -File -Filter *.json |
@@ -249,6 +273,7 @@ function Invoke-Verify() {
     if (Test-Path -LiteralPath $clientManifest) {
         try {
             $cm = Read-JsonFile $clientManifest
+            Assert-ClientPackageComplete -Paths @($cm.files | ForEach-Object { $_.path })
             foreach ($field in 'version', 'released', 'base_url', 'files') {
                 if (-not $cm.PSObject.Properties.Name.Contains($field)) {
                     $problems += "client/manifest.json missing field: $field"
@@ -271,6 +296,34 @@ function Invoke-Verify() {
                         if ($actualHash -ne $file.sha256) {
                             $problems += "sha256 mismatch v$($cm.version)/$($file.path)"
                         }
+                    }
+                }
+                # --- deploy scope: what actually changes vs the previous version. A hotfix
+                #     should usually CHANGE only cuo.dll; the manifest still lists all runtime files.
+                #     If ClassicUO.exe (the NAOT loader)
+                #     changed, that widens the client download set for no detection benefit
+                #     (version detection reads cuo.dll's PE version, not the loader).
+                $prevInfo = Get-PreviousVersionDir $cm.version
+                if ($prevInfo) {
+                    $scope = @()
+                    foreach ($file in $cm.files) {
+                        if ($file.path -eq 'version.txt') { continue }
+                        $prevFp = Join-Path $prevInfo.Path ($file.path -replace '/', '\')
+                        if (-not (Test-Path -LiteralPath $prevFp -PathType Leaf)) {
+                            $scope += "$($file.path) (new)"
+                            continue
+                        }
+                        $prevHash = (Get-FileHash -LiteralPath $prevFp -Algorithm SHA256).Hash.ToLower()
+                        if ($prevHash -ne $file.sha256) { $scope += $file.path }
+                    }
+                    if ($scope.Count -eq 0) {
+                        $warnings += "deploy scope vs complete package v$($prevInfo.Name): only version.txt changed (no binary changes)"
+                    }
+                    else {
+                        $warnings += "deploy scope vs complete package v$($prevInfo.Name): $($scope.Count) file(s) change -> $($scope -join ', ')"
+                    }
+                    if ($scope -match '^ClassicUO\.exe') {
+                        $warnings += "ClassicUO.exe changed - the NAOT loader's version does NOT drive update detection (cuo.dll does). For a hotfix, confirm the loader really needed to change; do not bump src/ClassicUO.Bootstrap Directory.Build.props (stays 1.1.0.0)."
                     }
                 }
             }
@@ -301,6 +354,7 @@ function Invoke-Verify() {
 
     Write-Host ""
     Write-Host "==> verify: checked $checked json file(s)" -ForegroundColor Cyan
+    foreach ($warning in $warnings) { Write-Host "    ~ $warning" -ForegroundColor Yellow }
     if ($problems.Count -eq 0) {
         Write-Host "==> OK - no problems found." -ForegroundColor Green
     }

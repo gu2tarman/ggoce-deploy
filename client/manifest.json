@@ -1,13 +1,73 @@
 {
   "version": "1.6.1.9",
-  "released": "2026-09-02T14:48:57Z",
+  "released": "2026-09-06T12:14:01Z",
   "notes": "GGO CE 1.6.1.9: 멀티클라이언트 리더 패널 및 특수 방어 옵션 강조 추가",
   "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.1.9/",
   "files": [
     {
+      "path": "ClassicUO.exe",
+      "size": 201216,
+      "sha256": "66cdc67a3a108195c807e337b041cf08c83b2a8b670e8a5a9e38233379e0b463"
+    },
+    {
       "path": "cuo.dll",
       "size": 17561600,
       "sha256": "b9b463f8a8d1f7d93f0b9d57aca9fc0de10ea2ec5fe5232c2b152b5e48ab213b"
+    },
+    {
+      "path": "cuoapi.dll",
+      "size": 18432,
+      "sha256": "fd61b0f5fa22082d87ef37726d75c72a864a62aedd47061b1eac9c02c77e3b00"
+    },
+    {
+      "path": "FAudio.dll",
+      "size": 340358,
+      "sha256": "6712e5affbd1ab0c4f819f0711e70c4a5b7ddbaee82b5c051b8a773c20261061"
+    },
+    {
+      "path": "FNA.dll.config",
+      "size": 858,
+      "sha256": "f4674782072a44aa0cfd9551e2d8e5b4adfae186373a5d66b67a6dab9a2d34e4"
+    },
+    {
+      "path": "FNA3D.dll",
+      "size": 759349,
+      "sha256": "cc4fce4770c36b6f5b4897d883a87b7d30e61734726aa837527f07dc23cd5491"
+    },
+    {
+      "path": "Fonts/kodia.ttf",
+      "size": 3670336,
+      "sha256": "98754c7ea4890a1cb2effda27ecb76b59640209888bd759185c077c3a98bb35c"
+    },
+    {
+      "path": "libtheorafile.dll",
+      "size": 1242040,
+      "sha256": "037001becd22f98d2897a3fc388f92ca9a80b56f9b41ba4507f4452c5f1cdf87"
+    },
+    {
+      "path": "SDL3.dll",
+      "size": 4667392,
+      "sha256": "eb46fbc3ceaf11a06ea4b9ea63f1783fbe8616018d70feb1711c68e1a6ab2e2e"
+    },
+    {
+      "path": "System.Buffers.dll",
+      "size": 20856,
+      "sha256": "accccfbe45d9f08ffeed9916e37b33e98c65be012cfff6e7fa7b67210ce1fefb"
+    },
+    {
+      "path": "System.Memory.dll",
+      "size": 142240,
+      "sha256": "bf3fb84664f4097f1a8a9bc71a51dcf8cf1a905d4080a4d290da1730866e856f"
+    },
+    {
+      "path": "System.Runtime.CompilerServices.Unsafe.dll",
+      "size": 18024,
+      "sha256": "37768488e8ef45729bc7d9a2677633c6450042975bb96516e186da6cb9cd0dcf"
+    },
+    {
+      "path": "zlib.dll",
+      "size": 113152,
+      "sha256": "fcf9f36b66fd053e4bfe4c599d5bd37bc66d6891a7af8616079786b942f316f3"
     },
     {
       "path": "version.txt",
