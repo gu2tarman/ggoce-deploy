@@ -1,8 +1,8 @@
 {
-  "version": "0.2.3",
-  "released": "2026-09-02T14:56:34Z",
-  "notes": "GGO Custom 런처 0.2.3: 멀티 로그인 보조창 자동 배치 및 프리셋 관리 추가",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.3/GGOLauncher.exe",
-  "size": 7686656,
-  "sha256": "aa9e20f80e83044e4b6a4b0deebefd775bd1d17776f01b6d1da18d550be8a935"
+  "version": "0.2.4",
+  "released": "2026-09-06T07:25:45Z",
+  "notes": "GGO Custom 런처 0.2.4: 서버 접속에 영향을 줄 수 있는 연결 확인 기능 제거",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.4/GGOLauncher.exe",
+  "size": 7667200,
+  "sha256": "ac610b6c996b6037bec7ba0ada5b35c9576447d2e1c366e8049c03f4bafde554"
 }
