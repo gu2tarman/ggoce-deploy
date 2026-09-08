@@ -1,8 +1,8 @@
 {
-  "version": "0.2.4",
-  "released": "2026-09-06T07:25:45Z",
-  "notes": "GGO Custom 런처 0.2.4: 서버 접속에 영향을 줄 수 있는 연결 확인 기능 제거",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.4/GGOLauncher.exe",
-  "size": 7667200,
-  "sha256": "ac610b6c996b6037bec7ba0ada5b35c9576447d2e1c366e8049c03f4bafde554"
+  "version": "0.2.5",
+  "released": "2026-09-08T04:19:23Z",
+  "notes": "GGO Custom 런처 0.2.5: 리더 자유 선택 및 멀티클라이언트 복구·보조창 관리 안정성 개선",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.5/GGOLauncher.exe",
+  "size": 7670272,
+  "sha256": "c420f508ff9cb3c5d353db93d6a80ecec30212d546f58e4a683c6d2ea1afee3c"
 }

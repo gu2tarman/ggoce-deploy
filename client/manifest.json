@@ -1,8 +1,8 @@
 {
-  "version": "1.6.1.9",
-  "released": "2026-09-06T12:14:01Z",
-  "notes": "GGO CE 1.6.1.9: 멀티클라이언트 리더 패널 및 특수 방어 옵션 강조 추가",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.1.9/",
+  "version": "1.6.2.0",
+  "released": "2026-09-07T01:30:09Z",
+  "notes": "GGO CE 1.6.2.0: 리더 자유 선택 및 멀티클라이언트 HUD·창 관리 안정성 개선",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.0/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 17561600,
-      "sha256": "b9b463f8a8d1f7d93f0b9d57aca9fc0de10ea2ec5fe5232c2b152b5e48ab213b"
+      "size": 17573376,
+      "sha256": "e9cf9f21dbc1ae021df1fbec50c17fe29efe5d32e35aaf2f7cf8ab553e25e537"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "2473a61305a26aee964ae9dcc24152c431555338dadaf6e1711f5a8b4331ac2d"
+      "sha256": "6b2d0f200066d693285efb8c60383c15d23e9af832c548c5447553a0dfc8b8ff"
     }
   ]
 }
