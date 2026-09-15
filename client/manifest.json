@@ -1,8 +1,8 @@
 {
-  "version": "1.6.2.0",
-  "released": "2026-09-07T01:30:09Z",
-  "notes": "GGO CE 1.6.2.0: 리더 자유 선택 및 멀티클라이언트 HUD·창 관리 안정성 개선",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.0/",
+  "version": "1.6.2.1",
+  "released": "2026-09-15T10:40:29Z",
+  "notes": "GGO CE 1.6.2.1: 원본 CUO의 최신 업데이트를 병합했습니다.",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.1/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 17573376,
-      "sha256": "e9cf9f21dbc1ae021df1fbec50c17fe29efe5d32e35aaf2f7cf8ab553e25e537"
+      "size": 17587200,
+      "sha256": "c8e804c2c25f75d764bfcf97fd6144e1d72b1e722d5af04a54bb253f2577d2c3"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "6b2d0f200066d693285efb8c60383c15d23e9af832c548c5447553a0dfc8b8ff"
+      "sha256": "ec090d1faa1991912487ad4f1cd8f1328ca23d12f9d7a8cf8a1c9a33ee0ee3ae"
     }
   ]
 }

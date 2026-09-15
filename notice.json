@@ -63,6 +63,13 @@
   ],
   "ggouo": [
     {
+      "id": "2026-09-15-ce-1621-upstream",
+      "title": "GGO CE 1.6.2.1 패치노트",
+      "date": "2026-09-15",
+      "severity": "normal",
+      "body_md": "## GGO CE 1.6.2.1 패치노트\n\n원본 CUO의 최신 업데이트를 병합했습니다."
+    },
+    {
       "id": "2026-09-07-launcher-minimum-024",
       "title": "런처 0.2.4 이상 필수 사용 · 최신 버전 권장",
       "date": "2026-09-08",
