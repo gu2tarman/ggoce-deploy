@@ -13,6 +13,7 @@ launcher/
 notice.json              공지사항
 scripts/
   build-manifest.ps1     빌드 폴더에서 client manifest 생성
+  release.ps1            manifest/notice 검증 및 staging 단일 진입점
 ```
 
 ## 클라이언트 업데이트 원칙
@@ -66,10 +67,17 @@ Screenshots/
 예시:
 
 ```powershell
-.\scripts\build-manifest.ps1 `
+.\scripts\release.ps1 manifest -Target client `
   -BuildPath "C:\Users\USER\Desktop\CUO-GGOCE-Test\CUO-GGOCustomEdition-v1.4.2" `
   -Version "1.4.2" `
   -Notes "Official ClassicUO multi reading fix + GGO CE v1.4.2"
+
+.\scripts\release.ps1 notice -Channel ggouo `
+  -Title "GGO CE 1.4.2 패치노트" `
+  -BodyMd "## GGO CE 1.4.2 패치노트`n`n### 변경 사항`n`n- ..."
+
+.\scripts\release.ps1 verify -Deep
+.\scripts\release.ps1 stage
 ```
 
 스크립트가 하는 일:
@@ -87,11 +95,11 @@ client/manifest.json 갱신
 
 ```bash
 git status
-git diff client/manifest.json
-git add client scripts README.md
-git commit -m "Release v1.4.2 client manifest"
-git push
+git diff --cached
+git commit -m "Release client v1.4.2 (manifest/notice)"
 ```
+
+`git push`는 런처가 바로 읽는 운영 파일을 live로 바꾸므로 반드시 최종 확인 후 별도로 실행합니다.
 
 ## manifest 형식
 

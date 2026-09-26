@@ -21,7 +21,7 @@
   manifest  Refresh a manifest. -Target client delegates to build-manifest.ps1;
             -Target launcher rewrites launcher/manifest.json.
   verify    Check every *.json for BOM + parse errors; deep-check client files.
-  stage     git add the deploy changes and print a commit message (no push).
+  stage     verify, git add only deploy runtime changes, and print a commit message.
 
 .EXAMPLES
   # 1) client release (after a publish folder exists)
@@ -37,7 +37,8 @@
 
   # 3) verify, then stage
   .\scripts\release.ps1 verify
-  .\scripts\release.ps1 stage -Commit
+  .\scripts\release.ps1 stage
+  git commit -m "Release client v1.5.0.6 (manifest/notice)"
   # then review and: git -C <ggoce-deploy> push
 
   # launcher release (after CI published the GitHub Release)
@@ -59,6 +60,7 @@ param(
     [string]$Channel,
     [string]$Title,
     [string]$Date,
+    [ValidateSet('normal', 'event', 'urgent')]
     [string]$Severity = 'normal',
     [string]$Url,
     [string]$UrlLabel,
@@ -69,6 +71,7 @@ param(
     [string]$BuildPath,
     [string]$Version,
     [string]$Notes,
+    [string[]]$ClientInclude,
 
     # --- manifest (launcher) ---
     [string]$ExePath,
@@ -121,6 +124,36 @@ function Get-NowUtc() {
     return (Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
 }
 
+function Read-TextNoBom([string]$Path) {
+    $bytes = [System.IO.File]::ReadAllBytes($Path)
+    if ($bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF) {
+        $bytes = $bytes[3..($bytes.Length - 1)]
+    }
+    return [System.Text.Encoding]::UTF8.GetString($bytes)
+}
+
+# Highest complete client package below $CurrentVersion, for scope diffing.
+function Get-PreviousVersionDir([string]$CurrentVersion) {
+    $clientDir = Join-Path $RepoRoot 'client'
+    if (-not (Test-Path -LiteralPath $clientDir)) { return $null }
+    $cur = $null
+    if (-not [version]::TryParse($CurrentVersion, [ref]$cur)) { return $null }
+    $best = $null
+    foreach ($d in (Get-ChildItem -LiteralPath $clientDir -Directory -Filter 'v*')) {
+        $vs = $d.Name.Substring(1)
+        $v = $null
+        if (-not [version]::TryParse($vs, [ref]$v)) { continue }
+        $missing = @(Get-RequiredClientFiles | Where-Object {
+            -not (Test-Path -LiteralPath (Join-Path $d.FullName $_) -PathType Leaf)
+        })
+        if ($missing.Count -gt 0) { continue }
+        if ($v -lt $cur -and ($null -eq $best -or $v -gt $best.Ver)) {
+            $best = [pscustomobject]@{ Ver = $v; Name = $vs; Path = $d.FullName }
+        }
+    }
+    return $best
+}
+
 # ---------------------------------------------------------------------------
 # notice
 # ---------------------------------------------------------------------------
@@ -156,12 +189,25 @@ function Invoke-Notice() {
 
     $existing = @($data.$Channel)
     $before = $existing.Count
-    $newArr = @($entry) + $existing       # prepend; existing entries preserved
+    $matches = @($existing | Where-Object { $_.id -eq $entryId })
+
+    if ($matches.Count -gt 1) {
+        throw "notice id already appears more than once in '$Channel': $entryId"
+    }
+
+    if ($matches.Count -eq 1) {
+        $newArr = @($entry) + @($existing | Where-Object { $_.id -ne $entryId })
+        $action = 'updated'
+    }
+    else {
+        $newArr = @($entry) + $existing
+        $action = 'inserted'
+    }
     $data.$Channel = $newArr
 
     Save-JsonFile $noticePath $data
 
-    Write-Host "==> inserted into '$Channel' [$entryId]" -ForegroundColor Green
+    Write-Host "==> $action in '$Channel' [$entryId]" -ForegroundColor Green
     Write-Host "    $Channel entries: $before -> $($newArr.Count) (existing preserved)" -ForegroundColor Gray
     Write-Host "    run 'verify' before staging." -ForegroundColor Cyan
 }
@@ -180,7 +226,12 @@ function Invoke-Manifest() {
             throw "build-manifest.ps1 not found next to release.ps1"
         }
         Write-Host "==> delegating to build-manifest.ps1" -ForegroundColor Cyan
-        & $buildManifest -BuildPath $BuildPath -Version $Version -Notes $Notes
+        if ($ClientInclude) {
+            & $buildManifest -BuildPath $BuildPath -Version $Version -Notes $Notes -Include $ClientInclude
+        }
+        else {
+            & $buildManifest -BuildPath $BuildPath -Version $Version -Notes $Notes
+        }
         Write-Host "==> client manifest done; run 'verify' next." -ForegroundColor Green
         return
     }
@@ -224,28 +275,6 @@ function Invoke-Manifest() {
 # verify
 # ---------------------------------------------------------------------------
 
-# Highest complete client package below $CurrentVersion, for scope diffing.
-function Get-PreviousVersionDir([string]$CurrentVersion) {
-    $clientDir = Join-Path $RepoRoot 'client'
-    if (-not (Test-Path -LiteralPath $clientDir)) { return $null }
-    $cur = $null
-    if (-not [version]::TryParse($CurrentVersion, [ref]$cur)) { return $null }
-    $best = $null
-    foreach ($d in (Get-ChildItem -LiteralPath $clientDir -Directory -Filter 'v*')) {
-        $vs = $d.Name.Substring(1)
-        $v = $null
-        if (-not [version]::TryParse($vs, [ref]$v)) { continue }
-        $missing = @(Get-RequiredClientFiles | Where-Object {
-            -not (Test-Path -LiteralPath (Join-Path $d.FullName $_) -PathType Leaf)
-        })
-        if ($missing.Count -gt 0) { continue }
-        if ($v -lt $cur -and ($null -eq $best -or $v -gt $best.Ver)) {
-            $best = [pscustomobject]@{ Ver = $v; Name = $vs; Path = $d.FullName }
-        }
-    }
-    return $best
-}
-
 function Invoke-Verify() {
     $problems = @()
     $warnings = @()
@@ -268,6 +297,63 @@ function Invoke-Verify() {
         }
     }
 
+    # notice shape
+    $noticePath = Join-Path $RepoRoot 'notice.json'
+    if (Test-Path -LiteralPath $noticePath) {
+        try {
+            $notice = Read-JsonFile $noticePath
+            $ids = @{}
+            foreach ($channel in 'ggouo', 'margo') {
+                if (-not $notice.PSObject.Properties.Name.Contains($channel)) {
+                    $problems += "notice.json missing channel: $channel"
+                    continue
+                }
+                foreach ($entry in @($notice.$channel)) {
+                    foreach ($field in 'id', 'title', 'date', 'severity') {
+                        if (-not $entry.PSObject.Properties.Name.Contains($field)) {
+                            $problems += "notice.json $channel entry missing field: $field"
+                        }
+                    }
+                    if ($entry.id) {
+                        if ($ids.ContainsKey($entry.id)) {
+                            $problems += "notice.json duplicate id: $($entry.id)"
+                        }
+                        $ids[$entry.id] = $true
+                    }
+                    if ($entry.date -and $entry.date -notmatch '^\d{4}-\d{2}-\d{2}$') {
+                        $problems += "notice.json invalid date for $($entry.id): $($entry.date)"
+                    }
+                    if ($entry.severity -and $entry.severity -notin @('normal', 'event', 'urgent')) {
+                        $problems += "notice.json invalid severity for $($entry.id): $($entry.severity)"
+                    }
+                    if ($entry.url_label -and -not $entry.url) {
+                        $problems += "notice.json url_label without url: $($entry.id)"
+                    }
+                }
+            }
+        }
+        catch {
+            $problems += "notice.json shape check failed: $($_.Exception.Message)"
+        }
+    }
+
+    # sidebar shape + remotely managed launcher background URL
+    $sidebarPath = Join-Path $RepoRoot 'sidebar.json'
+    if (Test-Path -LiteralPath $sidebarPath) {
+        try {
+            $sidebar = Read-JsonFile $sidebarPath
+            if (-not $sidebar.PSObject.Properties.Name.Contains('groups')) {
+                $problems += "sidebar.json missing field: groups"
+            }
+            if ($sidebar.background_url -and $sidebar.background_url -notmatch '^https://') {
+                $problems += "sidebar.json background_url must use https:// or be null"
+            }
+        }
+        catch {
+            $problems += "sidebar.json shape check failed: $($_.Exception.Message)"
+        }
+    }
+
     # client manifest <-> on-disk files
     $clientManifest = Join-Path $RepoRoot 'client\manifest.json'
     if (Test-Path -LiteralPath $clientManifest) {
@@ -281,7 +367,21 @@ function Invoke-Verify() {
             }
             if ($cm.version) {
                 $vdir = Join-Path $RepoRoot ("client\v" + $cm.version)
+                if ($cm.base_url -and $cm.base_url -notmatch "/client/v$([regex]::Escape($cm.version))/$") {
+                    $problems += "client/manifest.json base_url does not match version: $($cm.base_url)"
+                }
                 foreach ($file in $cm.files) {
+                    foreach ($field in 'path', 'size', 'sha256') {
+                        if (-not $file.PSObject.Properties.Name.Contains($field)) {
+                            $problems += "client/manifest.json file entry missing field: $field"
+                        }
+                    }
+                    if ($file.path -and ($file.path -match '^\.\.?(/|\\)' -or $file.path -match '^[A-Za-z]:' -or $file.path -match '\\')) {
+                        $problems += "client/manifest.json unsafe or non-normalized path: $($file.path)"
+                    }
+                    if ($file.sha256 -and $file.sha256 -notmatch '^[0-9a-f]{64}$') {
+                        $problems += "client/manifest.json sha256 not a 64-hex lowercase digest: $($file.path)"
+                    }
                     $fp = Join-Path $vdir ($file.path -replace '/', '\')
                     if (-not (Test-Path -LiteralPath $fp -PathType Leaf)) {
                         $problems += "client file missing: v$($cm.version)/$($file.path)"
@@ -298,6 +398,69 @@ function Invoke-Verify() {
                         }
                     }
                 }
+
+                # --- version-notation consistency: every hand-typed version string must
+                #     match the shipped -Version. These are the spots build tools do NOT
+                #     auto-derive, so a stale/typo'd version otherwise sails through to live.
+                $vtxtPath = Join-Path $vdir 'version.txt'
+                if (Test-Path -LiteralPath $vtxtPath -PathType Leaf) {
+                    $vtxt = (Read-TextNoBom $vtxtPath).Trim()
+                    if ($vtxt -ne $cm.version) {
+                        $problems += "version.txt '$vtxt' != manifest version '$($cm.version)'"
+                    }
+                }
+                if ($cm.notes) {
+                    $noteVers = @([regex]::Matches($cm.notes, '\d+\.\d+\.\d+(?:\.\d+)?') | ForEach-Object { $_.Value } | Select-Object -Unique)
+                    if ($noteVers.Count -gt 0 -and ($noteVers -notcontains $cm.version)) {
+                        $problems += "manifest.notes names version(s) [$($noteVers -join ', ')] but ships $($cm.version)"
+                    }
+                }
+                $cuoDllPath = Join-Path $vdir 'cuo.dll'
+                if (Test-Path -LiteralPath $cuoDllPath -PathType Leaf) {
+                    try {
+                        $cuoInfo = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($cuoDllPath)
+                        foreach ($peField in 'FileVersion', 'ProductVersion') {
+                            $peVersion = $cuoInfo.$peField
+                            if ([string]::IsNullOrWhiteSpace($peVersion)) {
+                                $problems += "cuo.dll PE $peField is empty; expected '$($cm.version)'"
+                            }
+                            elseif ($peVersion -ne $cm.version) {
+                                $problems += "cuo.dll PE $peField '$peVersion' != manifest version '$($cm.version)'"
+                            }
+                        }
+                    }
+                    catch {
+                        $problems += "cuo.dll PE version check failed: $($_.Exception.Message)"
+                    }
+                }
+                else {
+                    $problems += "cuo.dll missing from client v$($cm.version)"
+                }
+                # newest 'GGO CE' client patch-note must name the shipped version (title = hard,
+                # body = warn since bodies legitimately back-reference older versions).
+                $noticePathX = Join-Path $RepoRoot 'notice.json'
+                if (Test-Path -LiteralPath $noticePathX) {
+                    try {
+                        $nx = Read-JsonFile $noticePathX
+                        $ceNote = @($nx.ggouo) | Where-Object { $_.title -match 'GGO\s*CE\s*\d+\.\d+\.\d+' } | Select-Object -First 1
+                        if ($ceNote) {
+                            $tv = [regex]::Match($ceNote.title, '\d+\.\d+\.\d+(?:\.\d+)?')
+                            if ($tv.Success -and $tv.Value -ne $cm.version) {
+                                $problems += "newest 'GGO CE' notice is v$($tv.Value) but client ships v$($cm.version) (id $($ceNote.id))"
+                            }
+                            if ($ceNote.body_md) {
+                                $foreign = @([regex]::Matches($ceNote.body_md, '\d+\.\d+\.\d+(?:\.\d+)?') | ForEach-Object { $_.Value } | Select-Object -Unique | Where-Object { $_ -ne $cm.version })
+                                if ($foreign.Count -gt 0) {
+                                    $warnings += "notice body also mentions [$($foreign -join ', ')] (ok as back-reference) - id $($ceNote.id)"
+                                }
+                            }
+                        }
+                    }
+                    catch {
+                        $warnings += "could not cross-check notice against client version: $($_.Exception.Message)"
+                    }
+                }
+
                 # --- deploy scope: what actually changes vs the previous version. A hotfix
                 #     should usually CHANGE only cuo.dll; the manifest still lists all runtime files.
                 #     If ClassicUO.exe (the NAOT loader)
@@ -338,13 +501,26 @@ function Invoke-Verify() {
     if (Test-Path -LiteralPath $launcherManifest) {
         try {
             $lm = Read-JsonFile $launcherManifest
-            foreach ($field in 'version', 'url', 'size', 'sha256') {
+            foreach ($field in 'version', 'released', 'notes', 'url', 'size', 'sha256') {
                 if (-not $lm.PSObject.Properties.Name.Contains($field)) {
                     $problems += "launcher/manifest.json missing field: $field"
                 }
             }
+            if ($lm.version -and $lm.version -match '^v') {
+                $problems += "launcher/manifest.json version should not include leading v"
+            }
+            if ($lm.released) {
+                try { [datetime]::Parse($lm.released).ToUniversalTime() | Out-Null }
+                catch { $problems += "launcher/manifest.json released is not parseable: $($lm.released)" }
+            }
+            if ($lm.size -le 0) {
+                $problems += "launcher/manifest.json size must be positive"
+            }
             if ($lm.sha256 -and $lm.sha256 -notmatch '^[0-9a-f]{64}$') {
                 $problems += "launcher/manifest.json sha256 not a 64-hex lowercase digest"
+            }
+            if ($lm.version -and $lm.url -and $lm.url -notmatch "/releases/download/v$([regex]::Escape($lm.version))/GGOLauncher\.exe$") {
+                $problems += "launcher/manifest.json url does not match version: $($lm.url)"
             }
         }
         catch {
@@ -354,7 +530,10 @@ function Invoke-Verify() {
 
     Write-Host ""
     Write-Host "==> verify: checked $checked json file(s)" -ForegroundColor Cyan
-    foreach ($warning in $warnings) { Write-Host "    ~ $warning" -ForegroundColor Yellow }
+    if ($warnings.Count -gt 0) {
+        Write-Host "==> scope / notes ($($warnings.Count)):" -ForegroundColor Yellow
+        foreach ($w in $warnings) { Write-Host "    ~ $w" -ForegroundColor Yellow }
+    }
     if ($problems.Count -eq 0) {
         Write-Host "==> OK - no problems found." -ForegroundColor Green
     }
@@ -372,9 +551,29 @@ function Invoke-Verify() {
 function Invoke-Stage() {
     Push-Location $RepoRoot
     try {
-        git add notice.json client launcher scripts README.md 2>$null | Out-Null
+        Write-Host "==> verifying before staging..." -ForegroundColor Cyan
+        Invoke-Verify
 
-        $staged = (git diff --cached --name-only) -join "`n"
+        $paths = @('notice.json', 'sidebar.json', 'client\manifest.json', 'launcher\manifest.json')
+        $cm = Join-Path $RepoRoot 'client\manifest.json'
+        if (Test-Path -LiteralPath $cm) {
+            try {
+                $clientVersion = (Read-JsonFile $cm).version
+                if ($clientVersion) { $paths += "client\v$clientVersion" }
+            }
+            catch {}
+        }
+
+        foreach ($path in $paths) {
+            if (Test-Path -LiteralPath (Join-Path $RepoRoot $path)) {
+                git add -- $path | Out-Null
+                if ($LASTEXITCODE -ne 0) { throw "git add failed for: $path" }
+            }
+        }
+
+        $stagedFiles = @(git diff --cached --name-only)
+        if ($LASTEXITCODE -ne 0) { throw "git diff --cached failed" }
+        $staged = $stagedFiles -join "`n"
         if (-not $staged) {
             Write-Host "==> nothing staged (no changes)." -ForegroundColor Yellow
             return
@@ -383,10 +582,18 @@ function Invoke-Stage() {
         Write-Host "==> staged files:" -ForegroundColor Cyan
         git diff --cached --name-only | ForEach-Object { Write-Host "    $_" -ForegroundColor Gray }
 
-        $cm = Join-Path $RepoRoot 'client\manifest.json'
         $msg = "Release: update deploy manifests/notice"
-        if (Test-Path -LiteralPath $cm) {
+        $hasClient = @($stagedFiles | Where-Object { $_ -like 'client/*' }).Count -gt 0
+        $hasLauncher = @($stagedFiles | Where-Object { $_ -eq 'launcher/manifest.json' }).Count -gt 0
+        if ($hasClient -and (Test-Path -LiteralPath $cm)) {
             try { $msg = "Release client v$((Read-JsonFile $cm).version) (manifest/notice)" } catch {}
+        }
+        elseif ($hasLauncher) {
+            $lm = Join-Path $RepoRoot 'launcher\manifest.json'
+            try { $msg = "Release launcher v$((Read-JsonFile $lm).version) (manifest/notice)" } catch {}
+        }
+        elseif ($stagedFiles -contains 'notice.json') {
+            $msg = "Release: update notices"
         }
 
         Write-Host ""

@@ -140,7 +140,6 @@ Write-Host "==> manifest created: $manifestPath" -ForegroundColor Green
 Write-Host "==> files: $($entries.Count), total size: $([math]::Round(($entries | Measure-Object size -Sum).Sum / 1MB, 2)) MB" -ForegroundColor Green
 Write-Host ""
 Write-Host "Next:" -ForegroundColor Cyan
-Write-Host "  git status" -ForegroundColor White
-Write-Host "  git diff client/manifest.json" -ForegroundColor White
-Write-Host "  git add client scripts README.md" -ForegroundColor White
-Write-Host "  git commit -m `"Release v$Version client manifest`"" -ForegroundColor White
+Write-Host "  .\scripts\release.ps1 notice -Channel ggouo -Title `"GGO CE $Version 패치노트`" -BodyMd `"## GGO CE $Version 패치노트...`"" -ForegroundColor White
+Write-Host "  .\scripts\release.ps1 verify -Deep" -ForegroundColor White
+Write-Host "  .\scripts\release.ps1 stage" -ForegroundColor White
