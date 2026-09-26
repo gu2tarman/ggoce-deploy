@@ -1,8 +1,8 @@
 {
-  "version": "1.6.2.1",
-  "released": "2026-09-15T10:40:29Z",
-  "notes": "GGO CE 1.6.2.1: 원본 CUO의 최신 업데이트를 병합했습니다.",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.1/",
+  "version": "1.6.2.2",
+  "released": "2026-09-26T07:03:09Z",
+  "notes": "GGO CE 1.6.2.2: 모던 페이퍼돌 추가",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.2/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 17587200,
-      "sha256": "c8e804c2c25f75d764bfcf97fd6144e1d72b1e722d5af04a54bb253f2577d2c3"
+      "size": 17695232,
+      "sha256": "430dd22369e92a734c0fabe89c9755d6004e8775abd77c1e523ba7ddf43db1d3"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "ec090d1faa1991912487ad4f1cd8f1328ca23d12f9d7a8cf8a1c9a33ee0ee3ae"
+      "sha256": "cb9b02142f81ee841b0b790a54558f16678b8a15d5194460ae7c4e63ea3f6a18"
     }
   ]
 }
