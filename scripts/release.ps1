@@ -72,6 +72,7 @@ param(
     [string]$Version,
     [string]$Notes,
     [string[]]$ClientInclude,
+    [switch]$UpdateLoader,
 
     # --- manifest (launcher) ---
     [string]$ExePath,
@@ -130,28 +131,6 @@ function Read-TextNoBom([string]$Path) {
         $bytes = $bytes[3..($bytes.Length - 1)]
     }
     return [System.Text.Encoding]::UTF8.GetString($bytes)
-}
-
-# Highest complete client package below $CurrentVersion, for scope diffing.
-function Get-PreviousVersionDir([string]$CurrentVersion) {
-    $clientDir = Join-Path $RepoRoot 'client'
-    if (-not (Test-Path -LiteralPath $clientDir)) { return $null }
-    $cur = $null
-    if (-not [version]::TryParse($CurrentVersion, [ref]$cur)) { return $null }
-    $best = $null
-    foreach ($d in (Get-ChildItem -LiteralPath $clientDir -Directory -Filter 'v*')) {
-        $vs = $d.Name.Substring(1)
-        $v = $null
-        if (-not [version]::TryParse($vs, [ref]$v)) { continue }
-        $missing = @(Get-RequiredClientFiles | Where-Object {
-            -not (Test-Path -LiteralPath (Join-Path $d.FullName $_) -PathType Leaf)
-        })
-        if ($missing.Count -gt 0) { continue }
-        if ($v -lt $cur -and ($null -eq $best -or $v -gt $best.Ver)) {
-            $best = [pscustomobject]@{ Ver = $v; Name = $vs; Path = $d.FullName }
-        }
-    }
-    return $best
 }
 
 # ---------------------------------------------------------------------------
@@ -226,12 +205,10 @@ function Invoke-Manifest() {
             throw "build-manifest.ps1 not found next to release.ps1"
         }
         Write-Host "==> delegating to build-manifest.ps1" -ForegroundColor Cyan
-        if ($ClientInclude) {
-            & $buildManifest -BuildPath $BuildPath -Version $Version -Notes $Notes -Include $ClientInclude
-        }
-        else {
-            & $buildManifest -BuildPath $BuildPath -Version $Version -Notes $Notes
-        }
+        $bmArgs = @{ BuildPath = $BuildPath; Version = $Version; Notes = $Notes }
+        if ($ClientInclude) { $bmArgs.Include = $ClientInclude }
+        if ($UpdateLoader) { $bmArgs.UpdateLoader = $true }
+        & $buildManifest @bmArgs
         Write-Host "==> client manifest done; run 'verify' next." -ForegroundColor Green
         return
     }
@@ -466,7 +443,7 @@ function Invoke-Verify() {
                 #     If ClassicUO.exe (the NAOT loader)
                 #     changed, that widens the client download set for no detection benefit
                 #     (version detection reads cuo.dll's PE version, not the loader).
-                $prevInfo = Get-PreviousVersionDir $cm.version
+                $prevInfo = Get-PreviousVersionDir (Join-Path $RepoRoot 'client') $cm.version
                 if ($prevInfo) {
                     $scope = @()
                     foreach ($file in $cm.files) {
@@ -486,7 +463,7 @@ function Invoke-Verify() {
                         $warnings += "deploy scope vs complete package v$($prevInfo.Name): $($scope.Count) file(s) change -> $($scope -join ', ')"
                     }
                     if ($scope -match '^ClassicUO\.exe') {
-                        $warnings += "ClassicUO.exe changed - the NAOT loader's version does NOT drive update detection (cuo.dll does). For a hotfix, confirm the loader really needed to change; do not bump src/ClassicUO.Bootstrap Directory.Build.props (stays 1.1.0.0)."
+                        $warnings += "ClassicUO.exe changed - the NAOT loader's version does NOT drive update detection (cuo.dll does). It is only shipped with manifest -UpdateLoader; confirm the loader really needed to change and do not bump src/ClassicUO.Bootstrap Directory.Build.props (stays 1.1.0.0)."
                     }
                 }
             }

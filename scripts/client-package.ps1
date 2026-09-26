@@ -18,6 +18,34 @@ function Get-RequiredClientFiles {
     )
 }
 
+# Files taken from the previous complete package instead of the build output.
+# ClassicUO.exe (NAOT loader) rebuilds with a different hash even when its source is
+# unchanged; shipping the rebuild would make every client re-download it.
+function Get-ReusedClientFiles {
+    @('ClassicUO.exe')
+}
+
+# Highest complete client package below $CurrentVersion.
+function Get-PreviousVersionDir([string]$ClientDir, [string]$CurrentVersion) {
+    if (-not (Test-Path -LiteralPath $ClientDir)) { return $null }
+    $cur = $null
+    if (-not [version]::TryParse($CurrentVersion, [ref]$cur)) { return $null }
+    $best = $null
+    foreach ($d in (Get-ChildItem -LiteralPath $ClientDir -Directory -Filter 'v*')) {
+        $vs = $d.Name.Substring(1)
+        $v = $null
+        if (-not [version]::TryParse($vs, [ref]$v)) { continue }
+        $missing = @(Get-RequiredClientFiles | Where-Object {
+            -not (Test-Path -LiteralPath (Join-Path $d.FullName $_) -PathType Leaf)
+        })
+        if ($missing.Count -gt 0) { continue }
+        if ($v -lt $cur -and ($null -eq $best -or $v -gt $best.Ver)) {
+            $best = [pscustomobject]@{ Ver = $v; Name = $vs; Path = $d.FullName }
+        }
+    }
+    return $best
+}
+
 function Assert-ClientPackageComplete([string[]]$Paths) {
     $missing = @(Get-RequiredClientFiles | Where-Object { $Paths -cnotcontains $_ })
     if ($missing.Count -gt 0) {

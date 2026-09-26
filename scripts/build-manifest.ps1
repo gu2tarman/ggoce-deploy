@@ -9,6 +9,12 @@
   User-owned files are intentionally excluded:
   settings.json, Logs, Macros, Profiles, Screenshots, and *.pdb.
 
+  Unchanged files come from the previous complete package (client/v<prev>/):
+    - a required file missing from the build output (e.g. Fonts/kodia.ttf, which
+      the NAOT build does not produce) is filled from it;
+    - ClassicUO.exe is always taken from it, because the NAOT loader rebuilds with a
+      different hash even when unchanged. Pass -UpdateLoader to ship the rebuilt loader.
+
 .EXAMPLE
   .\scripts\build-manifest.ps1 `
     -BuildPath "C:\Users\USER\Desktop\CUO-GGOCE-Test\CUO-GGOCustomEdition-v1.4.2" `
@@ -20,7 +26,8 @@ param(
     [Parameter(Mandatory=$true)][string]$BuildPath,
     [Parameter(Mandatory=$true)][string]$Version,
     [string]$Notes = "",
-    [string[]]$Include
+    [string[]]$Include,
+    [switch]$UpdateLoader
 )
 
 $ErrorActionPreference = "Stop"
@@ -52,6 +59,12 @@ Write-Host "==> Build:    $resolvedBuildPath" -ForegroundColor Cyan
 Write-Host "==> Version:  v$Version" -ForegroundColor Cyan
 Write-Host "==> Target:   $versionDir" -ForegroundColor Cyan
 
+$prev = Get-PreviousVersionDir $clientDir $Version
+if ($prev) {
+    Write-Host "==> Reuse:    v$($prev.Name) (previous complete package)" -ForegroundColor Cyan
+}
+$reused = @(Get-ReusedClientFiles)
+
 $fileMap = @{}
 
 foreach ($entry in $Include) {
@@ -69,8 +82,28 @@ foreach ($entry in $Include) {
         continue
     }
 
+    $prevFile = $null
+    if ($prev) {
+        $prevFile = Join-Path $prev.Path ($normalized -replace "/", [System.IO.Path]::DirectorySeparatorChar)
+    }
+
+    if ($prevFile -and -not $UpdateLoader -and $reused -ccontains $normalized) {
+        Write-Host "  = $normalized reused from v$($prev.Name) (pass -UpdateLoader to ship the rebuilt one)" -ForegroundColor Yellow
+        $fileMap[$normalized] = $prevFile
+        continue
+    }
+
     if (-not (Test-Path -LiteralPath $fullPattern -PathType Leaf)) {
-        throw "Required release file is missing: $normalized"
+        # cuo.dll carries this release's code and version; never ship the old one.
+        if ($normalized -eq 'cuo.dll') {
+            throw "Required release file is missing: cuo.dll (the build output must contain the new cuo.dll)"
+        }
+        if (-not $prevFile -or -not (Test-Path -LiteralPath $prevFile -PathType Leaf)) {
+            throw "Required release file is missing: $normalized (not in the build output, and not in a previous complete package)"
+        }
+        Write-Host "  = $normalized not in build output; filled from v$($prev.Name)" -ForegroundColor Yellow
+        $fileMap[$normalized] = $prevFile
+        continue
     }
 
     $fileMap[$normalized] = (Resolve-Path -LiteralPath $fullPattern).Path
