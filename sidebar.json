@@ -15,12 +15,13 @@
         { "label": "웹훅 발급소", "url": "https://discord.gg/KQzHZsZ9eH" },
         { "label": "문의하기", "url": "https://open.kakao.com/o/sA71kz5d" }
       ]
-    },
-    {
-      "label": "ORIGINAL CLASSICUO",
-      "buttons": [
-        { "label": "클래식유오", "url": "https://www.classicuo.eu" }
-      ]
     }
-  ]
+  ],
+  "featured": {
+    "title": "UO 챔피언 서바이버",
+    "subtitle": "시즌 2 · 릭토르의 시련 TEST 오픈",
+    "url": "https://uo-survivor.pages.dev/?code=luna-48e8dr",
+    "image_url": null,
+    "hall": true
+  }
 }

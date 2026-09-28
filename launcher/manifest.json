@@ -1,8 +1,8 @@
 {
-  "version": "0.2.5",
-  "released": "2026-09-08T04:19:23Z",
-  "notes": "GGO Custom 런처 0.2.5: 리더 자유 선택 및 멀티클라이언트 복구·보조창 관리 안정성 개선",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.5/GGOLauncher.exe",
-  "size": 7670272,
-  "sha256": "c420f508ff9cb3c5d353db93d6a80ecec30212d546f58e4a683c6d2ea1afee3c"
+  "version": "0.2.6",
+  "released": "2026-09-28T14:03:17Z",
+  "notes": "GGO Custom 런처 0.2.6: UO 챔피언 서바이버 카드와 명예의 전당 추가",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.6/GGOLauncher.exe",
+  "size": 7816192,
+  "sha256": "ab8e74f7f545b0616d5cf664c9353009781673af679e93c8e2e5987ca57eca30"
 }
