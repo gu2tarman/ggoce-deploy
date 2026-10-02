@@ -1,8 +1,8 @@
 {
-  "version": "0.2.6",
-  "released": "2026-09-28T14:03:17Z",
-  "notes": "GGO Custom 런처 0.2.6: UO 챔피언 서바이버 카드와 명예의 전당 추가",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.6/GGOLauncher.exe",
-  "size": 7816192,
-  "sha256": "ab8e74f7f545b0616d5cf664c9353009781673af679e93c8e2e5987ca57eca30"
+  "version": "0.2.7",
+  "released": "2026-10-02T22:59:10Z",
+  "notes": "GGO Custom 런처 0.2.7: 클라이언트 자동 버전 감지 오류 수정 및 CUO·RE·CA 프로필 가져오기 추가",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.7/GGOLauncher.exe",
+  "size": 7926272,
+  "sha256": "9bc7fb2d011d44ba8a00aac6f31a01a99deaec1552ee4eb9687e618e9bac78bf"
 }
