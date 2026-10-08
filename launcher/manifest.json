@@ -1,8 +1,8 @@
 {
-  "version": "0.2.7",
-  "released": "2026-10-02T22:59:10Z",
-  "notes": "GGO Custom 런처 0.2.7: 클라이언트 자동 버전 감지 오류 수정 및 CUO·RE·CA 프로필 가져오기 추가",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.7/GGOLauncher.exe",
-  "size": 7926272,
-  "sha256": "9bc7fb2d011d44ba8a00aac6f31a01a99deaec1552ee4eb9687e618e9bac78bf"
+  "version": "0.2.8",
+  "released": "2026-10-08T07:30:19Z",
+  "notes": "GGO Custom 런처 0.2.8: 서버 선택(마고) 추가 및 UO·CUO 경로·플러그인 자동 찾기",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.8/GGOLauncher.exe",
+  "size": 7953920,
+  "sha256": "d08c15b21b437bda2fb8f4a1140c6dd49474a0a47af3c4745fcea4698748d7ea"
 }

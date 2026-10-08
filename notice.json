@@ -99,6 +99,15 @@
   ],
   "ggouo": [
     {
+      "id": "2026-10-08-launcher-028-server-preset-discovery",
+      "title": "GGO Custom 런처 0.2.8 업데이트 안내",
+      "date": "2026-10-08",
+      "severity": "normal",
+      "url": "https://github.com/gu2tarman/GGOLauncher/releases/tag/v0.2.8",
+      "url_label": "전체 패치노트 보기",
+      "body_md": "**GGO Custom 런처 v0.2.8** 업데이트가 배포되었습니다.\n\n처음 설정할 때 직접 입력해야 했던 서버 주소와 설치 경로를 런처가 알아서 채워 줍니다.\n\n- **서버 선택**: 프로필에서 「마고」를 고르면 주소와 포트가 자동으로 입력됩니다\n- **경로 자동 채우기**: 비어 있는 UO 경로와 CUO 경로를 이 PC에서 찾아 채웁니다\n- **플러그인 자동 찾기**: 설치된 RazorEnhanced와 ClassicAssist를 찾아 골라서 등록합니다\n- **프로필 가져오기**: 원본 설치 폴더를 자동으로 찾아 선택할 수 있습니다\n\n런처를 실행하면 자동으로 업데이트 안내가 표시됩니다."
+    },
+    {
       "id": "2026-10-07-ce-1623-jewel-icons",
       "title": "GGO CE 1.6.2.3 패치노트",
       "date": "2026-10-07",
