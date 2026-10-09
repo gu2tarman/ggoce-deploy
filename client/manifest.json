@@ -1,8 +1,8 @@
 {
-  "version": "1.6.2.3",
-  "released": "2026-10-07T14:01:21Z",
-  "notes": "GGO CE 1.6.2.3: 장신구 아이콘 크게 보기, 드롭다운 한글 표시 수정",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.3/",
+  "version": "1.6.2.4",
+  "released": "2026-10-09T14:53:23Z",
+  "notes": "GGO CE 1.6.2.4: 장비 최적화 도우미, 오토룻 방패 분류 수정, GGO 헬스바 펫 이름 변경",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.4/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 17752064,
-      "sha256": "d8d1949d8919bebcf4a495d46e4ada33ec5b8b9918fd08c0ef8f2dd71d100a42"
+      "size": 18179584,
+      "sha256": "d4540d884f368eba0adbf8d7cf905ac192f4c2cf0ef27e8ff0e9b2f59716e9e3"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "afa13086e3c9331e7110476f7783b0270bebc50accc4a0ca1c4821486416e210"
+      "sha256": "550fe13820eb08da17265a614a32be49d466b075afc4454c9f980ae4db2cda35"
     }
   ]
 }
