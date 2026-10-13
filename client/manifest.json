@@ -1,8 +1,8 @@
 {
-  "version": "1.6.2.5",
-  "released": "2026-10-12T13:04:36Z",
-  "notes": "GGO CE 1.6.2.5: 오토루팅 커스텀 목록 이름 판정 수정, 자동이동 루팅 모드 추가",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.5/",
+  "version": "1.6.2.6",
+  "released": "2026-10-13T04:28:25Z",
+  "notes": "GGO CE 1.6.2.6: 파티 관리 창 리뉴얼, 파티 프리셋, GGO 헬스바 새 디자인, 시체 탐색 확인 대기",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.6/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 18215424,
-      "sha256": "ac174c81a6b2610f72a27ff8f6839c3c61e3d49780388de7b436bf53cc256155"
+      "size": 18305024,
+      "sha256": "4b7858bb5a73c88ba56ec0aea83396fb7af8e11134d56c4802d9ddb9c311ec99"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "fdd5a14f99da336b13ff81c715b208fc45b16dd1974e743bffcb190fee7c247f"
+      "sha256": "6e1a16ad94cbee419765ba1149db019e0f04ee3b417e77037571b4d7fa33bb8a"
     }
   ]
 }
