@@ -1,8 +1,8 @@
 {
-  "version": "0.2.9",
-  "released": "2026-10-13T15:10:38Z",
-  "notes": "런처 0.2.9: 창을 닫아도 트레이에 상주하며 멀티클라 그룹 제어 유지, 단일 실행",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.2.9/GGOLauncher.exe",
-  "size": 8044544,
-  "sha256": "5eeec4eb5a42b97e1d649f515dacbd54d8391458e3b55ac224bd86c1035d3760"
+  "version": "0.3.0",
+  "released": "2026-10-14T21:29:45Z",
+  "notes": "런처 0.3.0: 클라이언트 자동 재시작 후 HUD 연결·실행 계정 추적·보조창 배치 유지 (GGO CE 1.6.2.8 이상 필요)",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.3.0/GGOLauncher.exe",
+  "size": 8051200,
+  "sha256": "80a74d77d3a4944bd92baf00a285efb948663070ce0c43f7d58fc6e77ba4df07"
 }
