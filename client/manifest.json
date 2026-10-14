@@ -1,8 +1,8 @@
 {
-  "version": "1.6.2.7",
-  "released": "2026-10-13T06:18:30Z",
-  "notes": "GGO CE 1.6.2.7: 재실행 시 펫 헬스바가 일반 바로 복원되던 문제 수정",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.7/",
+  "version": "1.6.2.8",
+  "released": "2026-10-14T21:16:23Z",
+  "notes": "GGO CE 1.6.2.8: 모던 페이퍼돌 장비 윤곽선, 자동 재시작 후 멀티클라이언트 HUD 연결 복구 (런처 0.3.0 이상 필요)",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.8/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 18305024,
-      "sha256": "78d6c91d210f7ce0f62d2613dc18d37120832379dd8c483a6c7adcd9e3c9aa26"
+      "size": 18330112,
+      "sha256": "33af2a0f63348c9d1da2561482993a8f15d974484dc65467f569baa4a69ce748"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "ee7228f8ec96ca94fcf3ac1a5d1c064ab46eb8d2bed61cf7a70acf8d4b19db8e"
+      "sha256": "dc3bafbf3d39a29bd52740485dee5e42475d62027175a5579a79e2eaba077772"
     }
   ]
 }
