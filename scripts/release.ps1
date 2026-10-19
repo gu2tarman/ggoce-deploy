@@ -18,6 +18,7 @@
 
 .ACTIONS
   notice    Insert a notice into notice.json (ggouo | margo).
+            Reusing an existing -Id replaces that entry; -Pinned keeps it on top.
   manifest  Refresh a manifest. -Target client delegates to build-manifest.ps1;
             -Target launcher rewrites launcher/manifest.json.
   verify    Check every *.json for BOM + parse errors; deep-check client files.
@@ -66,6 +67,8 @@ param(
     [string]$UrlLabel,
     [string]$BodyMd,
     [string]$Id,
+    # Keep the notice at the top of the list (launcher v0.3.1+; older launchers ignore it).
+    [switch]$Pinned,
 
     # --- manifest (client -> build-manifest.ps1) ---
     [string]$BuildPath,
@@ -165,6 +168,7 @@ function Invoke-Notice() {
     if ($Url) { $entry.url = $Url }
     if ($UrlLabel) { $entry.url_label = $UrlLabel }
     if ($BodyMd) { $entry.body_md = $BodyMd }
+    if ($Pinned) { $entry.pinned = $true }
 
     $existing = @($data.$Channel)
     $before = $existing.Count
@@ -302,6 +306,9 @@ function Invoke-Verify() {
                     }
                     if ($entry.severity -and $entry.severity -notin @('normal', 'event', 'urgent')) {
                         $problems += "notice.json invalid severity for $($entry.id): $($entry.severity)"
+                    }
+                    if ($entry.PSObject.Properties.Name.Contains('pinned') -and $entry.pinned -isnot [bool]) {
+                        $problems += "notice.json pinned must be true/false: $($entry.id)"
                     }
                     if ($entry.url_label -and -not $entry.url) {
                         $problems += "notice.json url_label without url: $($entry.id)"
