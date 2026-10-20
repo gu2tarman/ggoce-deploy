@@ -1,8 +1,8 @@
 {
-  "version": "0.3.0",
-  "released": "2026-10-14T21:29:45Z",
-  "notes": "런처 0.3.0: 클라이언트 자동 재시작 후 HUD 연결·실행 계정 추적·보조창 배치 유지 (GGO CE 1.6.2.8 이상 필요)",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.3.0/GGOLauncher.exe",
-  "size": 8051200,
-  "sha256": "80a74d77d3a4944bd92baf00a285efb948663070ce0c43f7d58fc6e77ba4df07"
+  "version": "0.3.1",
+  "released": "2026-10-20T12:13:11Z",
+  "notes": "런처 0.3.1: 프로필 가져오기 전체 백업·가져올/덮어쓸 폴더 표시·미등록 RE 프로필 등록, 창 가림 수정, 고정 공지 지원",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.3.1/GGOLauncher.exe",
+  "size": 8056320,
+  "sha256": "c040ec3f9e2762c7b9d1dae35a1e1351e45b51b59ad8e519ebfbbc1870938144"
 }
