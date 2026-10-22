@@ -1,8 +1,8 @@
 {
-  "version": "1.6.2.8",
-  "released": "2026-10-14T21:16:23Z",
-  "notes": "GGO CE 1.6.2.8: 모던 페이퍼돌 장비 윤곽선, 자동 재시작 후 멀티클라이언트 HUD 연결 복구 (런처 0.3.0 이상 필요)",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.8/",
+  "version": "1.6.2.9",
+  "released": "2026-10-22T08:56:28Z",
+  "notes": "GGO CE 1.6.2.9: 장비 최적화 강화 가정·상한 전 저항·가정 리얼 스킬·리파인/주문전달 필수·차단마사 프리셋, 탐색 속도 개선",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.9/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 18330112,
-      "sha256": "33af2a0f63348c9d1da2561482993a8f15d974484dc65467f569baa4a69ce748"
+      "size": 18483712,
+      "sha256": "f63ca68416ba1550867784b630d4b3f24ba315e5a40f3f02d0b3c7a509689584"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "dc3bafbf3d39a29bd52740485dee5e42475d62027175a5579a79e2eaba077772"
+      "sha256": "8017c20a40cb4fd4310468b68e0612d73f758ddde248d1678379edb9b6e7349b"
     }
   ]
 }
