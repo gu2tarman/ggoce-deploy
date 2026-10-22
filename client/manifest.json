@@ -1,8 +1,8 @@
 {
-  "version": "1.6.2.9",
-  "released": "2026-10-22T08:56:28Z",
-  "notes": "GGO CE 1.6.2.9: 장비 최적화 강화 가정·상한 전 저항·가정 리얼 스킬·리파인/주문전달 필수·차단마사 프리셋, 탐색 속도 개선",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.2.9/",
+  "version": "1.6.3.0",
+  "released": "2026-10-22T16:49:07Z",
+  "notes": "GGO CE 1.6.3.0: 모던 스킬창 (즐겨찾기·장비 보너스·목표 자동 잠금)",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.3.0/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 18483712,
-      "sha256": "f63ca68416ba1550867784b630d4b3f24ba315e5a40f3f02d0b3c7a509689584"
+      "size": 18628096,
+      "sha256": "b61d9e641a125c4a73d422d72e84c564c4eb0b26ab400cf75036c19b3c1f4114"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "8017c20a40cb4fd4310468b68e0612d73f758ddde248d1678379edb9b6e7349b"
+      "sha256": "7d206cfc04a1ffb8ab051fc01ea53824f6744d63c961bf696de0d9206df0d510"
     }
   ]
 }
