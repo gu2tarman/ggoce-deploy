@@ -6,7 +6,7 @@
       "buttons": [
         { "label": "설정 가이드 & Wiki", "url": "https://gu2tarman.github.io/ggoce-docs/" },
         { "label": "홈페이지", "url": "https://margo.25942594.xyz:8443/" },
-        { "label": "오픈카톡", "url": "https://open.kakao.com/o/gte6oRwi" }
+        { "label": "임시 디스코드", "url": "https://discord.gg/vTY8DcxNyt", "highlight": true, "badge": "임시" }
       ]
     },
     {

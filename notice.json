@@ -1,6 +1,15 @@
 {
   "margo": [
     {
+      "id": "2026-10-26-margo-temporary-discord",
+      "title": "오픈카톡 임시 차단 및 임시 디스코드방 안내",
+      "date": "2026-10-26",
+      "severity": "normal",
+      "url": "https://discord.gg/vTY8DcxNyt",
+      "url_label": "임시 디스코드방 참여하기",
+      "body_md": "카카오톡 대화방이 **임시 차단**되어, 이용하실 수 있는 **임시 디스코드방**을 만들었습니다.\n\n아래 링크로 참여해 주세요.\n\n[임시 디스코드방 참여하기](https://discord.gg/vTY8DcxNyt)\n\n런처 왼쪽 사이드바의 기존 **오픈카톡** 버튼도 **임시 디스코드**로 변경되었으며, 같은 주소로 연결됩니다."
+    },
+    {
       "id": "2026-09-30-margo-skillcap-donation",
       "title": "스킬캡 기부 시스템 추가 — 최대 740",
       "date": "2026-09-30",
