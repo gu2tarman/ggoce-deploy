@@ -1,8 +1,8 @@
 {
-  "version": "1.6.3.0",
-  "released": "2026-10-22T16:49:07Z",
-  "notes": "GGO CE 1.6.3.0: 모던 스킬창 (즐겨찾기·장비 보너스·목표 자동 잠금)",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.3.0/",
+  "version": "1.6.3.1",
+  "released": "2026-10-26T15:23:55Z",
+  "notes": "GGO CE 1.6.3.1: 반투명 지도·화면 마커, 지도 메뉴 한글화, 모던 스킬창 조작 개선",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.3.1/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 18628096,
-      "sha256": "b61d9e641a125c4a73d422d72e84c564c4eb0b26ab400cf75036c19b3c1f4114"
+      "size": 18680832,
+      "sha256": "c6fda23405e69d2dfc6321fac2cfd68880b832d5c3e24ae5c59a0173415b2725"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "7d206cfc04a1ffb8ab051fc01ea53824f6744d63c961bf696de0d9206df0d510"
+      "sha256": "b221a484b5182513058fecb067902afff5c48f30d5752fdcb52d4415b2524816"
     }
   ]
 }
