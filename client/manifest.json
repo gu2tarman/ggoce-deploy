@@ -1,6 +1,6 @@
 {
   "version": "1.6.3.1",
-  "released": "2026-10-26T15:23:55Z",
+  "released": "2026-10-26T16:15:20Z",
   "notes": "GGO CE 1.6.3.1: 반투명 지도·화면 마커, 지도 메뉴 한글화, 모던 스킬창 조작 개선",
   "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.3.1/",
   "files": [
@@ -12,7 +12,7 @@
     {
       "path": "cuo.dll",
       "size": 18680832,
-      "sha256": "c6fda23405e69d2dfc6321fac2cfd68880b832d5c3e24ae5c59a0173415b2725"
+      "sha256": "5eeac87b194e0aaa2ec3036062a337ee5aa3343aa6853134fea8dca1cc294bf7"
     },
     {
       "path": "cuoapi.dll",
