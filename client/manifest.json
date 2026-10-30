@@ -1,8 +1,8 @@
 {
-  "version": "1.6.3.1",
-  "released": "2026-10-26T16:15:20Z",
-  "notes": "GGO CE 1.6.3.1: 반투명 지도·화면 마커, 지도 메뉴 한글화, 모던 스킬창 조작 개선",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.3.1/",
+  "version": "1.6.3.2",
+  "released": "2026-10-30T15:38:37Z",
+  "notes": "GGO CE 1.6.3.2: 옵션창 한국어화·설명 툴팁, 파티 채팅만 보기, 파티 채팅 한글·자동 수락 수정",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.3.2/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 18680832,
-      "sha256": "5eeac87b194e0aaa2ec3036062a337ee5aa3343aa6853134fea8dca1cc294bf7"
+      "size": 18894848,
+      "sha256": "b89874695eaa713cad898bd7cb767de9acaed4ffbfe83e35344758208c6bfb89"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "b221a484b5182513058fecb067902afff5c48f30d5752fdcb52d4415b2524816"
+      "sha256": "0123a75b3c1ab8340ebef310bda9541af47745c68e7c1b7a7e07e6b173f15390"
     }
   ]
 }
