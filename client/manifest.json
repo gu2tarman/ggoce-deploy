@@ -1,8 +1,8 @@
 {
-  "version": "1.6.3.2",
-  "released": "2026-10-30T15:38:37Z",
-  "notes": "GGO CE 1.6.3.2: 옵션창 한국어화·설명 툴팁, 파티 채팅만 보기, 파티 채팅 한글·자동 수락 수정",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.3.2/",
+  "version": "1.6.3.3",
+  "released": "2026-10-31T08:51:01Z",
+  "notes": "GGO CE 1.6.3.3: RE 스크립트 실행·정지 버튼, 착용 장비 내구도 요약 창",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.3.3/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 18894848,
-      "sha256": "b89874695eaa713cad898bd7cb767de9acaed4ffbfe83e35344758208c6bfb89"
+      "size": 18929152,
+      "sha256": "f7b057963e79e27173da71acddcf9681c0f8f327d3b5a40d5f34b7d03fb1c997"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "0123a75b3c1ab8340ebef310bda9541af47745c68e7c1b7a7e07e6b173f15390"
+      "sha256": "0f6e0eb42ba83f805482438397b302d7301afef23900b6a831c21f279248154e"
     }
   ]
 }
