@@ -1,7 +1,7 @@
 {
   "version": "1.6.3.3",
-  "released": "2026-10-31T08:51:01Z",
-  "notes": "GGO CE 1.6.3.3: RE 스크립트 실행·정지 버튼, 착용 장비 내구도 요약 창",
+  "released": "2026-10-31T08:56:09Z",
+  "notes": "GGO CE 1.6.3.3: RE 스크립트 실행·정지 버튼, 착용 장비 내구도 요약 창, 페이퍼돌 메뉴 한글화",
   "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.3.3/",
   "files": [
     {
@@ -12,7 +12,7 @@
     {
       "path": "cuo.dll",
       "size": 18929152,
-      "sha256": "f7b057963e79e27173da71acddcf9681c0f8f327d3b5a40d5f34b7d03fb1c997"
+      "sha256": "0319c123b0befaeada45c0f86573bd51331ffd1e59fcd89b84e5000303e2eac4"
     },
     {
       "path": "cuoapi.dll",
