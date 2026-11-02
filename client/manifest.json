@@ -1,8 +1,8 @@
 {
-  "version": "1.6.3.3",
-  "released": "2026-10-31T08:56:09Z",
-  "notes": "GGO CE 1.6.3.3: RE 스크립트 실행·정지 버튼, 착용 장비 내구도 요약 창, 페이퍼돌 메뉴 한글화",
-  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.3.3/",
+  "version": "1.6.3.4",
+  "released": "2026-11-02T08:44:49Z",
+  "notes": "GGO CE 1.6.3.4: 오토룻 획득 이펙트, 모던 길드창, 모던 UI 옵션 통합",
+  "base_url": "https://raw.githubusercontent.com/gu2tarman/ggoce-deploy/main/client/v1.6.3.4/",
   "files": [
     {
       "path": "ClassicUO.exe",
@@ -11,8 +11,8 @@
     },
     {
       "path": "cuo.dll",
-      "size": 18929152,
-      "sha256": "0319c123b0befaeada45c0f86573bd51331ffd1e59fcd89b84e5000303e2eac4"
+      "size": 21719552,
+      "sha256": "7f08717f63becf11e6900e04877ad75fc5f8df3942ed4f7815e9f88c5eddfa33"
     },
     {
       "path": "cuoapi.dll",
@@ -72,7 +72,7 @@
     {
       "path": "version.txt",
       "size": 7,
-      "sha256": "0f6e0eb42ba83f805482438397b302d7301afef23900b6a831c21f279248154e"
+      "sha256": "affa94e4538ca7eb7b62f8e94bff6fdf8b9dd52f710ef0a8ea468541afbdf43d"
     }
   ]
 }
