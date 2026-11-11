@@ -1,8 +1,8 @@
 {
-  "version": "0.3.0",
-  "released": "2026-10-14T21:28:37Z",
-  "notes": "긴급 임시 롤백: 런처 0.3.1의 Windows Defender 탐지 사례를 조사하는 동안 0.3.1 자동 업데이트 배포를 중단하고 0.3.0으로 되돌립니다. 원인과 안전성은 확인 중입니다.",
-  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.3.0/GGOLauncher.exe",
-  "size": 8051200,
-  "sha256": "80a74d77d3a4944bd92baf00a285efb948663070ce0c43f7d58fc6e77ba4df07"
+  "version": "0.3.2",
+  "released": "2026-11-11T06:25:54Z",
+  "notes": "런처 자체 업데이트 방식 변경: 임시 폴더·스크립트 없이 설치 폴더에서 직접 교체 (0.3.1 백신 오탐 대응)",
+  "url": "https://github.com/gu2tarman/GGOLauncher/releases/download/v0.3.2/GGOLauncher.exe",
+  "size": 8057856,
+  "sha256": "7f2bfa870fa60248e74f80cf0a33304910cb54577dea7a18b4afa7579c69fca5"
 }
